@@ -1,0 +1,766 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6611A13B1CAA57C500476E8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6611A13A1CAA57C500476E8B /* main.m */; };
+		6611A13E1CAA57C500476E8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6611A13D1CAA57C500476E8B /* AppDelegate.m */; };
+		6611A1411CAA57C500476E8B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6611A1401CAA57C500476E8B /* MainViewController.m */; };
+		6611A1441CAA57C500476E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6611A1421CAA57C500476E8B /* Main.storyboard */; };
+		6611A1461CAA57C500476E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6611A1451CAA57C500476E8B /* Assets.xcassets */; };
+		6611A1541CAA57C500476E8B /* STSensNetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6611A1531CAA57C500476E8B /* STSensNetTests.m */; };
+		6611A15F1CAA57C500476E8B /* STSensNetUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6611A15E1CAA57C500476E8B /* STSensNetUITests.m */; };
+		6611A1811CAA61BC00476E8B /* press_contact.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6611A17F1CAA61BC00476E8B /* press_contact.jpg */; };
+		6611A1821CAA61BC00476E8B /* text.html in Resources */ = {isa = PBXBuildFile; fileRef = 6611A1801CAA61BC00476E8B /* text.html */; };
+		6611A19E1CAA7C6900476E8B /* BlueSTSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6611A19B1CAA7C6000476E8B /* BlueSTSDK.framework */; };
+		6611A19F1CAA7C6900476E8B /* BlueSTSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6611A19B1CAA7C6000476E8B /* BlueSTSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6632202D1DD0D4C40085EF59 /* STSensNetCommandFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 6632202C1DD0D4C40085EF59 /* STSensNetCommandFeature.m */; };
+		663B9B241DA3D97F0067DAFC /* DemoView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663B9B231DA3D97F0067DAFC /* DemoView.storyboard */; };
+		663B9B2D1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B2C1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m */; };
+		663B9B311DA3DBD90067DAFC /* EnviromentalRemoteNodeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B301DA3DBD90067DAFC /* EnviromentalRemoteNodeData.m */; };
+		663B9B341DA3DC410067DAFC /* RemoteNodeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B331DA3DC410067DAFC /* RemoteNodeData.m */; };
+		663B9B371DA3DD270067DAFC /* GenericRemoteNodeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B361DA3DD270067DAFC /* GenericRemoteNodeData.m */; };
+		663B9B401DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B3F1DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m */; };
+		663B9B441DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m in Sources */ = {isa = PBXBuildFile; fileRef = 663B9B431DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m */; };
+		664E09771E49FE0E00C6EA07 /* BlueSTSDK_Gui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 664E09761E49FDFC00C6EA07 /* BlueSTSDK_Gui.framework */; };
+		664E09781E49FE0E00C6EA07 /* BlueSTSDK_Gui.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 664E09761E49FDFC00C6EA07 /* BlueSTSDK_Gui.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		665E59C61DDAEA9600FAD172 /* GenericRemoteNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E59C51DDAEA9600FAD172 /* GenericRemoteNodeCell.m */; };
+		66FD405A1E9CDD3400711F26 /* st_images_LanchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */; };
+		66FD405C1E9CDEE100711F26 /* st_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD405B1E9CDEE100711F26 /* st_images.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6611A1501CAA57C500476E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6611A12E1CAA57C500476E8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6611A1351CAA57C500476E8B;
+			remoteInfo = STSensNet;
+		};
+		6611A15B1CAA57C500476E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6611A12E1CAA57C500476E8B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6611A1351CAA57C500476E8B;
+			remoteInfo = STSensNet;
+		};
+		6611A19A1CAA7C6000476E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 665241F01B0B1BB100931F93;
+			remoteInfo = BlueSTSDK;
+		};
+		6611A19C1CAA7C6000476E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 665241FB1B0B1BB100931F93;
+			remoteInfo = BlueSTSDKTests;
+		};
+		6611A1A01CAA7C6900476E8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 665241EF1B0B1BB100931F93;
+			remoteInfo = BlueSTSDK;
+		};
+		664E09751E49FDFC00C6EA07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664E096F1E49FDFC00C6EA07 /* BlueSTSDK_Gui.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 663979141E2E5D0000FBF696;
+			remoteInfo = BlueSTSDK_Gui;
+		};
+		664E09791E49FE0E00C6EA07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664E096F1E49FDFC00C6EA07 /* BlueSTSDK_Gui.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 663979131E2E5D0000FBF696;
+			remoteInfo = BlueSTSDK_Gui;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6611A1A21CAA7C6900476E8B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				664E09781E49FE0E00C6EA07 /* BlueSTSDK_Gui.framework in Embed Frameworks */,
+				6611A19F1CAA7C6900476E8B /* BlueSTSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		6611A1361CAA57C500476E8B /* STSensNet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = STSensNet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6611A13A1CAA57C500476E8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6611A13C1CAA57C500476E8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6611A13D1CAA57C500476E8B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6611A13F1CAA57C500476E8B /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6611A1401CAA57C500476E8B /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6611A1431CAA57C500476E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6611A1451CAA57C500476E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6611A14A1CAA57C500476E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6611A14F1CAA57C500476E8B /* STSensNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STSensNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6611A1531CAA57C500476E8B /* STSensNetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSensNetTests.m; sourceTree = "<group>"; };
+		6611A1551CAA57C500476E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6611A15A1CAA57C500476E8B /* STSensNetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = STSensNetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6611A15E1CAA57C500476E8B /* STSensNetUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSensNetUITests.m; sourceTree = "<group>"; };
+		6611A1601CAA57C500476E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6611A17F1CAA61BC00476E8B /* press_contact.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = press_contact.jpg; path = Resources/AboutPage/press_contact.jpg; sourceTree = "<group>"; };
+		6611A1801CAA61BC00476E8B /* text.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = text.html; path = Resources/AboutPage/text.html; sourceTree = "<group>"; };
+		6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK.xcodeproj; path = BlueSTSDK/BlueSTSDK/BlueSTSDK.xcodeproj; sourceTree = "<group>"; };
+		6632202B1DD0D4C40085EF59 /* STSensNetCommandFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSensNetCommandFeature.h; sourceTree = "<group>"; };
+		6632202C1DD0D4C40085EF59 /* STSensNetCommandFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSensNetCommandFeature.m; sourceTree = "<group>"; };
+		663B9B231DA3D97F0067DAFC /* DemoView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DemoView.storyboard; sourceTree = "<group>"; };
+		663B9B2B1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnviromentalRemoteNodeCell.h; sourceTree = "<group>"; };
+		663B9B2C1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnviromentalRemoteNodeCell.m; sourceTree = "<group>"; };
+		663B9B2F1DA3DBD90067DAFC /* EnviromentalRemoteNodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnviromentalRemoteNodeData.h; sourceTree = "<group>"; };
+		663B9B301DA3DBD90067DAFC /* EnviromentalRemoteNodeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnviromentalRemoteNodeData.m; sourceTree = "<group>"; };
+		663B9B321DA3DC410067DAFC /* RemoteNodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoteNodeData.h; sourceTree = "<group>"; };
+		663B9B331DA3DC410067DAFC /* RemoteNodeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteNodeData.m; sourceTree = "<group>"; };
+		663B9B351DA3DD270067DAFC /* GenericRemoteNodeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericRemoteNodeData.h; sourceTree = "<group>"; };
+		663B9B361DA3DD270067DAFC /* GenericRemoteNodeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericRemoteNodeData.m; sourceTree = "<group>"; };
+		663B9B3E1DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericRemoteNodeTableViewController.h; path = Demo/GenericRemoteNodeTableViewController.h; sourceTree = "<group>"; };
+		663B9B3F1DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GenericRemoteNodeTableViewController.m; path = Demo/GenericRemoteNodeTableViewController.m; sourceTree = "<group>"; };
+		663B9B421DA3EE690067DAFC /* STSensNetGenericRemoteFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSensNetGenericRemoteFeature.h; sourceTree = "<group>"; };
+		663B9B431DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSensNetGenericRemoteFeature.m; sourceTree = "<group>"; };
+		664E096F1E49FDFC00C6EA07 /* BlueSTSDK_Gui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlueSTSDK_Gui.xcodeproj; path = BlueSTSDK_Gui/BlueSTSDK_Gui.xcodeproj; sourceTree = "<group>"; };
+		665E59C41DDAEA9600FAD172 /* GenericRemoteNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericRemoteNodeCell.h; sourceTree = "<group>"; };
+		665E59C51DDAEA9600FAD172 /* GenericRemoteNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericRemoteNodeCell.m; sourceTree = "<group>"; };
+		66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = st_images_LanchScreen.xcassets; path = BlueSTSDK_Gui/BlueSTSDK_Gui/st_images_LanchScreen.xcassets; sourceTree = "<group>"; };
+		66FD405B1E9CDEE100711F26 /* st_images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = st_images.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6611A1331CAA57C500476E8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				664E09771E49FE0E00C6EA07 /* BlueSTSDK_Gui.framework in Frameworks */,
+				6611A19E1CAA7C6900476E8B /* BlueSTSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A14C1CAA57C500476E8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A1571CAA57C500476E8B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6611A12D1CAA57C500476E8B = {
+			isa = PBXGroup;
+			children = (
+				66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */,
+				664E096F1E49FDFC00C6EA07 /* BlueSTSDK_Gui.xcodeproj */,
+				6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */,
+				6611A1381CAA57C500476E8B /* STSensNet */,
+				6611A1521CAA57C500476E8B /* STSensNetTests */,
+				6611A15D1CAA57C500476E8B /* STSensNetUITests */,
+				6611A1371CAA57C500476E8B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6611A1371CAA57C500476E8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6611A1361CAA57C500476E8B /* STSensNet.app */,
+				6611A14F1CAA57C500476E8B /* STSensNetTests.xctest */,
+				6611A15A1CAA57C500476E8B /* STSensNetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6611A1381CAA57C500476E8B /* STSensNet */ = {
+			isa = PBXGroup;
+			children = (
+				6611A1A91CAAAD1200476E8B /* Demo */,
+				6611A1421CAA57C500476E8B /* Main.storyboard */,
+				6611A1451CAA57C500476E8B /* Assets.xcassets */,
+				6611A13C1CAA57C500476E8B /* AppDelegate.h */,
+				6611A13D1CAA57C500476E8B /* AppDelegate.m */,
+				6611A13F1CAA57C500476E8B /* MainViewController.h */,
+				6611A1401CAA57C500476E8B /* MainViewController.m */,
+				6611A14A1CAA57C500476E8B /* Info.plist */,
+				6611A1831CAA61C000476E8B /* Resources */,
+				6611A1391CAA57C500476E8B /* Supporting Files */,
+				66FD405B1E9CDEE100711F26 /* st_images.xcassets */,
+			);
+			path = STSensNet;
+			sourceTree = "<group>";
+		};
+		6611A1391CAA57C500476E8B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6611A13A1CAA57C500476E8B /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6611A1521CAA57C500476E8B /* STSensNetTests */ = {
+			isa = PBXGroup;
+			children = (
+				6611A1531CAA57C500476E8B /* STSensNetTests.m */,
+				6611A1551CAA57C500476E8B /* Info.plist */,
+			);
+			path = STSensNetTests;
+			sourceTree = "<group>";
+		};
+		6611A15D1CAA57C500476E8B /* STSensNetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6611A15E1CAA57C500476E8B /* STSensNetUITests.m */,
+				6611A1601CAA57C500476E8B /* Info.plist */,
+			);
+			path = STSensNetUITests;
+			sourceTree = "<group>";
+		};
+		6611A1831CAA61C000476E8B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6611A1841CAA61D000476E8B /* AboutPage */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6611A1841CAA61D000476E8B /* AboutPage */ = {
+			isa = PBXGroup;
+			children = (
+				6611A17F1CAA61BC00476E8B /* press_contact.jpg */,
+				6611A1801CAA61BC00476E8B /* text.html */,
+			);
+			name = AboutPage;
+			sourceTree = "<group>";
+		};
+		6611A1961CAA7C6000476E8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6611A19B1CAA7C6000476E8B /* BlueSTSDK.framework */,
+				6611A19D1CAA7C6000476E8B /* BlueSTSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6611A1A91CAAAD1200476E8B /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				663B9B231DA3D97F0067DAFC /* DemoView.storyboard */,
+				663B9B411DA3EE690067DAFC /* Feature */,
+				663B9B2E1DA3DBD90067DAFC /* Data */,
+				663B9B2A1DA3DBCE0067DAFC /* TableCell */,
+				663B9B3E1DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.h */,
+				663B9B3F1DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m */,
+			);
+			name = Demo;
+			sourceTree = "<group>";
+		};
+		663B9B2A1DA3DBCE0067DAFC /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				663B9B2B1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.h */,
+				663B9B2C1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m */,
+				665E59C41DDAEA9600FAD172 /* GenericRemoteNodeCell.h */,
+				665E59C51DDAEA9600FAD172 /* GenericRemoteNodeCell.m */,
+			);
+			name = TableCell;
+			path = Demo/TableCell;
+			sourceTree = "<group>";
+		};
+		663B9B2E1DA3DBD90067DAFC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				663B9B321DA3DC410067DAFC /* RemoteNodeData.h */,
+				663B9B331DA3DC410067DAFC /* RemoteNodeData.m */,
+				663B9B2F1DA3DBD90067DAFC /* EnviromentalRemoteNodeData.h */,
+				663B9B301DA3DBD90067DAFC /* EnviromentalRemoteNodeData.m */,
+				663B9B351DA3DD270067DAFC /* GenericRemoteNodeData.h */,
+				663B9B361DA3DD270067DAFC /* GenericRemoteNodeData.m */,
+			);
+			name = Data;
+			path = Demo/Data;
+			sourceTree = "<group>";
+		};
+		663B9B411DA3EE690067DAFC /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				663B9B421DA3EE690067DAFC /* STSensNetGenericRemoteFeature.h */,
+				663B9B431DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m */,
+				6632202B1DD0D4C40085EF59 /* STSensNetCommandFeature.h */,
+				6632202C1DD0D4C40085EF59 /* STSensNetCommandFeature.m */,
+			);
+			name = Feature;
+			path = Demo/Feature;
+			sourceTree = "<group>";
+		};
+		664E09701E49FDFC00C6EA07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				664E09761E49FDFC00C6EA07 /* BlueSTSDK_Gui.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6611A1351CAA57C500476E8B /* STSensNet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6611A1631CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNet" */;
+			buildPhases = (
+				6611A1321CAA57C500476E8B /* Sources */,
+				6611A1331CAA57C500476E8B /* Frameworks */,
+				6611A1341CAA57C500476E8B /* Resources */,
+				6611A1A21CAA7C6900476E8B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6611A1A11CAA7C6900476E8B /* PBXTargetDependency */,
+				664E097A1E49FE0E00C6EA07 /* PBXTargetDependency */,
+			);
+			name = STSensNet;
+			productName = STSensNet;
+			productReference = 6611A1361CAA57C500476E8B /* STSensNet.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6611A14E1CAA57C500476E8B /* STSensNetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6611A1661CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNetTests" */;
+			buildPhases = (
+				6611A14B1CAA57C500476E8B /* Sources */,
+				6611A14C1CAA57C500476E8B /* Frameworks */,
+				6611A14D1CAA57C500476E8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6611A1511CAA57C500476E8B /* PBXTargetDependency */,
+			);
+			name = STSensNetTests;
+			productName = STSensNetTests;
+			productReference = 6611A14F1CAA57C500476E8B /* STSensNetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6611A1591CAA57C500476E8B /* STSensNetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6611A1691CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNetUITests" */;
+			buildPhases = (
+				6611A1561CAA57C500476E8B /* Sources */,
+				6611A1571CAA57C500476E8B /* Frameworks */,
+				6611A1581CAA57C500476E8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6611A15C1CAA57C500476E8B /* PBXTargetDependency */,
+			);
+			name = STSensNetUITests;
+			productName = STSensNetUITests;
+			productReference = 6611A15A1CAA57C500476E8B /* STSensNetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6611A12E1CAA57C500476E8B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = STCentralLab;
+				TargetAttributes = {
+					6611A1351CAA57C500476E8B = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 9L4QA9SNQK;
+					};
+					6611A14E1CAA57C500476E8B = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 6611A1351CAA57C500476E8B;
+					};
+					6611A1591CAA57C500476E8B = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 6611A1351CAA57C500476E8B;
+					};
+				};
+			};
+			buildConfigurationList = 6611A1311CAA57C500476E8B /* Build configuration list for PBXProject "STSensNet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6611A12D1CAA57C500476E8B;
+			productRefGroup = 6611A1371CAA57C500476E8B /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6611A1961CAA7C6000476E8B /* Products */;
+					ProjectRef = 6611A1951CAA7C6000476E8B /* BlueSTSDK.xcodeproj */;
+				},
+				{
+					ProductGroup = 664E09701E49FDFC00C6EA07 /* Products */;
+					ProjectRef = 664E096F1E49FDFC00C6EA07 /* BlueSTSDK_Gui.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				6611A1351CAA57C500476E8B /* STSensNet */,
+				6611A14E1CAA57C500476E8B /* STSensNetTests */,
+				6611A1591CAA57C500476E8B /* STSensNetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6611A19B1CAA7C6000476E8B /* BlueSTSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlueSTSDK.framework;
+			remoteRef = 6611A19A1CAA7C6000476E8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6611A19D1CAA7C6000476E8B /* BlueSTSDKTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BlueSTSDKTests.xctest;
+			remoteRef = 6611A19C1CAA7C6000476E8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		664E09761E49FDFC00C6EA07 /* BlueSTSDK_Gui.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlueSTSDK_Gui.framework;
+			remoteRef = 664E09751E49FDFC00C6EA07 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6611A1341CAA57C500476E8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663B9B241DA3D97F0067DAFC /* DemoView.storyboard in Resources */,
+				6611A1461CAA57C500476E8B /* Assets.xcassets in Resources */,
+				6611A1441CAA57C500476E8B /* Main.storyboard in Resources */,
+				6611A1821CAA61BC00476E8B /* text.html in Resources */,
+				6611A1811CAA61BC00476E8B /* press_contact.jpg in Resources */,
+				66FD405A1E9CDD3400711F26 /* st_images_LanchScreen.xcassets in Resources */,
+				66FD405C1E9CDEE100711F26 /* st_images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A14D1CAA57C500476E8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A1581CAA57C500476E8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6611A1321CAA57C500476E8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6611A1411CAA57C500476E8B /* MainViewController.m in Sources */,
+				6632202D1DD0D4C40085EF59 /* STSensNetCommandFeature.m in Sources */,
+				663B9B441DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m in Sources */,
+				663B9B371DA3DD270067DAFC /* GenericRemoteNodeData.m in Sources */,
+				663B9B341DA3DC410067DAFC /* RemoteNodeData.m in Sources */,
+				663B9B2D1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m in Sources */,
+				663B9B401DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m in Sources */,
+				6611A13E1CAA57C500476E8B /* AppDelegate.m in Sources */,
+				6611A13B1CAA57C500476E8B /* main.m in Sources */,
+				665E59C61DDAEA9600FAD172 /* GenericRemoteNodeCell.m in Sources */,
+				663B9B311DA3DBD90067DAFC /* EnviromentalRemoteNodeData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A14B1CAA57C500476E8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6611A1541CAA57C500476E8B /* STSensNetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6611A1561CAA57C500476E8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6611A15F1CAA57C500476E8B /* STSensNetUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6611A1511CAA57C500476E8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6611A1351CAA57C500476E8B /* STSensNet */;
+			targetProxy = 6611A1501CAA57C500476E8B /* PBXContainerItemProxy */;
+		};
+		6611A15C1CAA57C500476E8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6611A1351CAA57C500476E8B /* STSensNet */;
+			targetProxy = 6611A15B1CAA57C500476E8B /* PBXContainerItemProxy */;
+		};
+		6611A1A11CAA7C6900476E8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BlueSTSDK;
+			targetProxy = 6611A1A01CAA7C6900476E8B /* PBXContainerItemProxy */;
+		};
+		664E097A1E49FE0E00C6EA07 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BlueSTSDK_Gui;
+			targetProxy = 664E09791E49FE0E00C6EA07 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6611A1421CAA57C500476E8B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6611A1431CAA57C500476E8B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6611A1611CAA57C500476E8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6611A1621CAA57C500476E8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6611A1641CAA57C500476E8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = STSensNet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		6611A1651CAA57C500476E8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = 9L4QA9SNQK;
+				INFOPLIST_FILE = STSensNet/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		6611A1671CAA57C500476E8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = STSensNetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STSensNet.app/STSensNet";
+			};
+			name = Debug;
+		};
+		6611A1681CAA57C500476E8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = STSensNetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/STSensNet.app/STSensNet";
+			};
+			name = Release;
+		};
+		6611A16A1CAA57C500476E8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = STSensNetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = STSensNet;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		6611A16B1CAA57C500476E8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = STSensNetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.st.clab.STSensNetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = STSensNet;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6611A1311CAA57C500476E8B /* Build configuration list for PBXProject "STSensNet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6611A1611CAA57C500476E8B /* Debug */,
+				6611A1621CAA57C500476E8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6611A1631CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6611A1641CAA57C500476E8B /* Debug */,
+				6611A1651CAA57C500476E8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6611A1661CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6611A1671CAA57C500476E8B /* Debug */,
+				6611A1681CAA57C500476E8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6611A1691CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6611A16A1CAA57C500476E8B /* Debug */,
+				6611A16B1CAA57C500476E8B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6611A12E1CAA57C500476E8B /* Project object */;
+}
