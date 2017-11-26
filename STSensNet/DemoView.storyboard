@@ -222,6 +222,10 @@
                                                                     <state key="normal" title="Acc ON">
                                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="accelerometerOn:" destination="mEb-Qi-5y9" eventType="touchUpInside" id="Ndz-3D-KZF"/>
+                                                                        <segue destination="Mzj-kX-CSW" kind="show" identifier="accelerometerSegue" id="zzt-5B-Acv"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agN-4I-wYM">
                                                                     <rect key="frame" x="74" y="67" width="88" height="29"/>
@@ -230,6 +234,10 @@
                                                                     <state key="normal" title="Mag ON">
                                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="magnetometerOn:" destination="mEb-Qi-5y9" eventType="touchUpInside" id="4U8-bb-pf4"/>
+                                                                        <segue destination="Mzj-kX-CSW" kind="show" identifier="magnetometerSegue" id="SgO-uY-IrL"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4s-uU-rpn">
                                                                     <rect key="frame" x="246" y="32" width="91" height="30"/>
@@ -246,6 +254,10 @@
                                                                     <state key="normal" title="Gyro ON">
                                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="gyroscopeOn:" destination="mEb-Qi-5y9" eventType="touchUpInside" id="DqY-vS-nLz"/>
+                                                                        <segue destination="Mzj-kX-CSW" kind="show" identifier="gyroscopeSegue" id="9Kd-3N-khd"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -329,6 +341,64 @@
             </objects>
             <point key="canvasLocation" x="-775.20000000000005" y="500.59970014992507"/>
         </scene>
+        <!--Plot Feature-->
+        <scene sceneID="BTj-qx-Se6">
+            <objects>
+                <viewController id="Mzj-kX-CSW" userLabel="Plot Feature" customClass="PlotFeatureViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r9a-X6-tkx"/>
+                        <viewControllerLayoutGuide type="bottom" id="d1d-YY-quq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hEJ-Yt-mBC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNq-dQ-91a">
+                                <rect key="frame" x="24" y="36" width="327" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-0e-v1M" userLabel="plot">
+                                <rect key="frame" x="32" y="64" width="311" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rNq-dQ-91a" firstAttribute="leading" secondItem="hEJ-Yt-mBC" secondAttribute="leadingMargin" constant="8" id="1Zm-dO-Eo8"/>
+                            <constraint firstItem="d1d-YY-quq" firstAttribute="top" secondItem="HjP-0e-v1M" secondAttribute="bottom" constant="8" id="5SJ-rp-sAt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rNq-dQ-91a" secondAttribute="trailing" constant="8" id="F7H-yX-9cW"/>
+                            <constraint firstItem="HjP-0e-v1M" firstAttribute="top" secondItem="rNq-dQ-91a" secondAttribute="bottom" constant="6.5" id="WCP-9q-jhA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HjP-0e-v1M" secondAttribute="trailing" constant="16" id="aJe-g4-ddA"/>
+                            <constraint firstItem="rNq-dQ-91a" firstAttribute="top" secondItem="r9a-X6-tkx" secondAttribute="bottom" constant="16" id="bm4-4E-DYp"/>
+                            <constraint firstItem="HjP-0e-v1M" firstAttribute="leading" secondItem="hEJ-Yt-mBC" secondAttribute="leadingMargin" constant="16" id="jmO-y4-dSy"/>
+                            <constraint firstItem="rNq-dQ-91a" firstAttribute="centerX" secondItem="hEJ-Yt-mBC" secondAttribute="centerX" id="xsh-hK-zdf"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B2w-Mf-bvL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185" y="179"/>
+        </scene>
+        <!--Sensor Fusion-->
+        <scene sceneID="Qzl-RD-weR">
+            <objects>
+                <viewController id="Y3Y-Wh-1Zc" userLabel="Sensor Fusion" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G9l-g2-JQz"/>
+                        <viewControllerLayoutGuide type="bottom" id="s8c-ru-paE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WQL-wZ-ijM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zHY-40-Idl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="185" y="834"/>
+        </scene>
     </scenes>
     <resources>
         <image name="humidity_icon" width="60" height="60"/>
@@ -341,4 +411,7 @@
         <image name="temperature_icon" width="60" height="60"/>
         <image name="wake_up_icon" width="60" height="60"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="SgO-uY-IrL"/>
+    </inferredMetricsTieBreakers>
 </document>
