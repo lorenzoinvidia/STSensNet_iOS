@@ -68,10 +68,23 @@ static NSString *sMicLevelUnit;
      */
     
     __weak IBOutlet UIView *mMemsView;
-    
-    
-    
+  
 }
+
+    /*
+     *  Mems and cube view
+     */
+
+- (IBAction)accelerometerOn:(UIButton *)sender {
+}
+
+- (IBAction)gyroscopeOn:(UIButton *)sender {
+}
+
+- (IBAction)magnetometerOn:(UIButton *)sender {
+}
+
+
 - (IBAction)changeProximityNotificationStatus:(UISwitch *)sender {
     [_genericDelegate proximtiyNotificationDidChangeForNodeId: self.nodeId newState:sender.isOn];
 }
