@@ -72,6 +72,10 @@
  */
 @property id<GenericRemoteNodeCellChanges> genericDelegate;
 
+-(void)showMemsView;
+
+
+
 /**
  set the out of bound value to use when display the data
  

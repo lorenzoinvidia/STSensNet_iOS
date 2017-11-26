@@ -177,6 +177,7 @@
      [STSensNetGenericRemoteFeature getMicLevelUnit]];
     [GenericRemoteNodeCell setMicLevelMaxValue:
      [STSensNetGenericRemoteFeature getMicLevelMaxValue]];
+    
 }
 
 /**
@@ -188,7 +189,7 @@
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
     self.tableView.rowHeight=UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight=192.0;
+    self.tableView.estimatedRowHeight=200.0;
     
     [self setUpEnviromentalCell];
     [self setUpGenericCell];
@@ -274,8 +275,8 @@
     
     cell.envDelegate=self;
     cell.genericDelegate=self;
-    
     [cell updateContent:data];
+//    [cell showMemsView];
     return cell;
 }
 
@@ -310,6 +311,7 @@
     data.proximity = [STSensNetGenericRemoteFeature getProximity:sample];
     data.micLevel = [STSensNetGenericRemoteFeature getMicLevel:sample];
     data.luminosity = [STSensNetGenericRemoteFeature getLuminosity:sample];
+    
     
     dispatch_sync(dispatch_get_main_queue(),^{
         CGPoint offset = self.tableView.contentOffset;

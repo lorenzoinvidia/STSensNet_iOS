@@ -63,6 +63,13 @@ static NSString *sMicLevelUnit;
     __weak IBOutlet UIProgressView *mMicLevelProgres;
     __weak IBOutlet UISwitch *mMicLevelSwitch;
     
+    /*
+     *  Mems and cube view
+     */
+    
+    __weak IBOutlet UIView *mMemsView;
+    
+    
     
 }
 - (IBAction)changeProximityNotificationStatus:(UISwitch *)sender {
@@ -139,14 +146,22 @@ static NSString *sMicLevelUnit;
         mLastMotionEvent=-1;
     
     [self updateLastMoviment:data.lastMotionEvent];
+   
     [self updateProximityValue:data.proximity];
     [mProximitySwich setOn:data.isProximityEnabled];
     
     [self updateMicLevelValue:data.micLevel];
     [mMicLevelSwitch setOn:data.isMicLevelEnabled];
+    
+    [self showMemsView];
+    
     return nodeChanges;
 }
 
+
+-(void)showMemsView {
+    mMemsView.hidden = false;
+}
 
 
 +(void)setProximityOutOfRangeValue:(uint16_t)value{
