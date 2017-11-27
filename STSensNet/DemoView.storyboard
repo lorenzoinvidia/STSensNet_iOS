@@ -344,7 +344,7 @@
         <!--Plot Feature-->
         <scene sceneID="BTj-qx-Se6">
             <objects>
-                <viewController id="Mzj-kX-CSW" userLabel="Plot Feature" customClass="PlotFeatureViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlotFeatureViewController" id="Mzj-kX-CSW" userLabel="Plot Feature" customClass="PlotFeatureViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r9a-X6-tkx"/>
                         <viewControllerLayoutGuide type="bottom" id="d1d-YY-quq"/>
@@ -376,6 +376,9 @@
                             <constraint firstItem="rNq-dQ-91a" firstAttribute="centerX" secondItem="hEJ-Yt-mBC" secondAttribute="centerX" id="xsh-hK-zdf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="featureLabel" destination="rNq-dQ-91a" id="Jbi-AU-qDF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B2w-Mf-bvL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

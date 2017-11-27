@@ -38,6 +38,17 @@
 #import "EnviromentalRemoteNodeCell.h"
 #import "GenericRemoteNodeData.h"
 
+
+/**
+ *  protocol that provides the method to start the plot feature view
+ */
+
+@protocol GetThePlotFeatureProtocol <NSObject>
+
+-(void)loadPlotView: (UIViewController *)controller;
+@end
+
+
 /**
  *  protocol where the cell will notify a change in the led switch
  */
@@ -66,6 +77,8 @@
  * and last moviment event
  **/
 @interface GenericRemoteNodeCell : EnviromentalRemoteNodeCell
+
+@property (nonatomic, retain) id<GetThePlotFeatureProtocol> plotFeatureDelegate;
 
 /**
  * object where notify if the user enable some notification

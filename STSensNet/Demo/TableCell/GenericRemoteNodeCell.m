@@ -70,6 +70,7 @@ static NSString *sMicLevelUnit;
     __weak IBOutlet UIView *mMemsView;
   
 }
+@synthesize plotFeatureDelegate;
 
     /*
      *  Mems and cube view

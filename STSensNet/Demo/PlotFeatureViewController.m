@@ -9,14 +9,14 @@
 #import "PlotFeatureViewController.h"
 
 @interface PlotFeatureViewController ()
-
 @end
 
 @implementation PlotFeatureViewController
+@synthesize featureLabel, featureLabelText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.featureLabel.text = featureLabelText;
 }
 
 - (void)didReceiveMemoryWarning {
