@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PlotFeatureViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet UILabel *featureLabel;
+@property (strong, nonatomic) NSString * featureLabelText;
 @end

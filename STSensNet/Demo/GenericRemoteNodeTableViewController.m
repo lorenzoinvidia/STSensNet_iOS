@@ -48,6 +48,8 @@
 #import "Data/EnviromentalRemoteNodeData.h"
 #import "Data/GenericRemoteNodeData.h"
 
+#import "PlotFeatureViewController.h"
+
 #define BIG_ROW_HEIGHT 256.0f
 #define SMALL_ROW_HEIGHT 128.0f
 
@@ -245,6 +247,30 @@
     }
 
 }
+
+/**
+ *  switch the segues and assign label text
+ */
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
+    PlotFeatureViewController * plotFeatureViewController = segue.destinationViewController;
+//    NSLog(@"prepareForSegue called!"); //DEBUG
+    
+    if ([segue.identifier  isEqualToString: @"accelerometerSegue"]) {
+        plotFeatureViewController.featureLabelText = @"Accelerometer plot";
+    
+    } else if ([segue.identifier  isEqualToString: @"gyroscopeSegue"]) {
+        plotFeatureViewController.featureLabelText = @"Gyroscope plot";
+    
+    } else if ([segue.identifier  isEqualToString: @"magnetometerSegue"]) {
+        plotFeatureViewController.featureLabelText = @"Magnetometer plot";
+        
+    } else {
+        NSLog(@"Different segue ::: ROW257"); //DEBUG
+    }
+}
+
+
 
 #pragma mark - Table view data source
 
