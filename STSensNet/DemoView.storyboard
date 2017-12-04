@@ -247,6 +247,7 @@
                                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
                                                                     <connections>
+                                                                        <action selector="cubeOn:" destination="mEb-Qi-5y9" eventType="touchUpInside" id="kgL-cS-Xmb"/>
                                                                         <segue destination="Y3Y-Wh-1Zc" kind="show" identifier="cubeSegue" id="hHL-Lw-hxb"/>
                                                                     </connections>
                                                                 </button>

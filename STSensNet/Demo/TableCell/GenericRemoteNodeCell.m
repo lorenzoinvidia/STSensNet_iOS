@@ -85,6 +85,13 @@ static NSString *sMicLevelUnit;
 - (IBAction)magnetometerOn:(UIButton *)sender {
 }
 
+- (IBAction)cubeOn:(UIButton *)sender {
+}
+
+
+
+
+
 
 - (IBAction)changeProximityNotificationStatus:(UISwitch *)sender {
     [_genericDelegate proximtiyNotificationDidChangeForNodeId: self.nodeId newState:sender.isOn];
