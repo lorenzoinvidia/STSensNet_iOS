@@ -32,6 +32,7 @@
 		66FD405A1E9CDD3400711F26 /* st_images_LanchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */; };
 		66FD405C1E9CDEE100711F26 /* st_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD405B1E9CDEE100711F26 /* st_images.xcassets */; };
 		ED7318EE1FCAEE1800C0F49A /* PlotFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */; };
+		EDBDBEE71FD5BA910080977B /* SensorFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		66FD405B1E9CDEE100711F26 /* st_images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = st_images.xcassets; sourceTree = "<group>"; };
 		ED7318EC1FCAEE1800C0F49A /* PlotFeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlotFeatureViewController.h; path = Demo/PlotFeatureViewController.h; sourceTree = "<group>"; };
 		ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlotFeatureViewController.m; path = Demo/PlotFeatureViewController.m; sourceTree = "<group>"; };
+		EDBDBEE51FD5BA900080977B /* SensorFusionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SensorFusionViewController.h; path = Demo/SensorFusionViewController.h; sourceTree = "<group>"; };
+		EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SensorFusionViewController.m; path = Demo/SensorFusionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,8 @@
 			isa = PBXGroup;
 			children = (
 				663B9B231DA3D97F0067DAFC /* DemoView.storyboard */,
+				EDBDBEE51FD5BA900080977B /* SensorFusionViewController.h */,
+				EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */,
 				ED7318EC1FCAEE1800C0F49A /* PlotFeatureViewController.h */,
 				ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */,
 				663B9B411DA3EE690067DAFC /* Feature */,
@@ -502,6 +507,7 @@
 				6632202D1DD0D4C40085EF59 /* STSensNetCommandFeature.m in Sources */,
 				663B9B441DA3EE690067DAFC /* STSensNetGenericRemoteFeature.m in Sources */,
 				663B9B371DA3DD270067DAFC /* GenericRemoteNodeData.m in Sources */,
+				EDBDBEE71FD5BA910080977B /* SensorFusionViewController.m in Sources */,
 				663B9B341DA3DC410067DAFC /* RemoteNodeData.m in Sources */,
 				663B9B2D1DA3DBCE0067DAFC /* EnviromentalRemoteNodeCell.m in Sources */,
 				663B9B401DA3EA6B0067DAFC /* GenericRemoteNodeTableViewController.m in Sources */,

@@ -246,6 +246,9 @@
                                                                     <state key="normal" title="Cube ON">
                                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <segue destination="Y3Y-Wh-1Zc" kind="show" identifier="cubeSegue" id="hHL-Lw-hxb"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Hk-kK-Rxa">
                                                                     <rect key="frame" x="74" y="32" width="88" height="29"/>
@@ -353,7 +356,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Example" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNq-dQ-91a">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rNq-dQ-91a">
                                 <rect key="frame" x="24" y="36" width="327" height="21.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -387,7 +390,7 @@
         <!--Sensor Fusion-->
         <scene sceneID="Qzl-RD-weR">
             <objects>
-                <viewController id="Y3Y-Wh-1Zc" userLabel="Sensor Fusion" sceneMemberID="viewController">
+                <viewController id="Y3Y-Wh-1Zc" userLabel="Sensor Fusion" customClass="SensorFusionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G9l-g2-JQz"/>
                         <viewControllerLayoutGuide type="bottom" id="s8c-ru-paE"/>
@@ -395,12 +398,29 @@
                     <view key="view" contentMode="scaleToFill" id="WQL-wZ-ijM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLz-18-Rcz">
+                                <rect key="frame" x="24" y="36" width="327" height="21.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YLz-18-Rcz" firstAttribute="centerX" secondItem="WQL-wZ-ijM" secondAttribute="centerX" id="HCL-YK-dLV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YLz-18-Rcz" secondAttribute="trailing" constant="8" id="N0C-YV-vxN"/>
+                            <constraint firstItem="YLz-18-Rcz" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="8" id="PP8-gK-5Ae"/>
+                            <constraint firstItem="YLz-18-Rcz" firstAttribute="top" secondItem="G9l-g2-JQz" secondAttribute="bottom" constant="16" id="eyI-0y-B5V"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="featureLabel" destination="YLz-18-Rcz" id="bI5-M8-qUO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHY-40-Idl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="834"/>
+            <point key="canvasLocation" x="185" y="935"/>
         </scene>
     </scenes>
     <resources>

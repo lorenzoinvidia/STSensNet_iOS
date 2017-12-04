@@ -49,6 +49,7 @@
 #import "Data/GenericRemoteNodeData.h"
 
 #import "PlotFeatureViewController.h"
+#import "SensorFusionViewController.h"
 
 #define BIG_ROW_HEIGHT 256.0f
 #define SMALL_ROW_HEIGHT 128.0f
@@ -254,7 +255,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
     PlotFeatureViewController * plotFeatureViewController = segue.destinationViewController;
-//    NSLog(@"prepareForSegue called!"); //DEBUG
+    SensorFusionViewController * sensorFusionViewController = segue.destinationViewController;
+    
     
     if ([segue.identifier  isEqualToString: @"accelerometerSegue"]) {
         plotFeatureViewController.featureLabelText = @"Accelerometer plot";
@@ -264,6 +266,9 @@
     
     } else if ([segue.identifier  isEqualToString: @"magnetometerSegue"]) {
         plotFeatureViewController.featureLabelText = @"Magnetometer plot";
+        
+    } else if ([segue.identifier  isEqualToString: @"cubeSegue"]) {
+        sensorFusionViewController.featureLabelText = @"Sensor Fusion";
         
     } else {
         NSLog(@"Different segue ::: ROW257"); //DEBUG
