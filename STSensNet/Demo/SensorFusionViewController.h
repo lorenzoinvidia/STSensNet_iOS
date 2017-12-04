@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SceneKit/SceneKit.h>
-#import "GenericRemoteNodeTableViewController.h"
 
-@interface SensorFusionViewController : GenericRemoteNodeTableViewController
+@interface SensorFusionViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *featureLabel;
 @property (strong, nonatomic) NSString * featureLabelText;
-@property (weak, nonatomic) IBOutlet SCNView *sceneView;
 
 @end

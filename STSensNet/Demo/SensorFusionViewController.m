@@ -7,22 +7,15 @@
 //
 
 #import "SensorFusionViewController.h"
-#import <GLKit/GLKit.h>
-#import <BlueSTSDK_Gui/MBProgressHUD.h>
-#import <BlueSTSDK/BlueSTSDKFeatureMemsSensorFusionCompact.h>
 
+@interface SensorFusionViewController ()
 
-#define SCENE_MODEL_FILE @"art.scnassets/cubeModel.dae"
-#define SCENE_MODEL_NAME @"Cube"
-#define CUBE_DEFAULT_SCALE 1.5f
-
-
-@interface SensorFusionViewController () //<BlueSTSDKFeatureDelegate>
 @end
 
 @implementation SensorFusionViewController
 @synthesize featureLabel, featureLabelText;
 
+<<<<<<< HEAD
 BlueSTSDKFeatureMemsSensorFusion *mSensorFusionFeature;
 GLKQuaternion mQuatReset;
 SCNScene *mScene;
@@ -105,6 +98,26 @@ SCNNode *mObjectNode;
 //    if(feature == mSensorFusionFeature)
 //        [self updateRotation:sample];
 //}
+=======
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.featureLabel.text = featureLabelText;
+}
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+>>>>>>> parent of 0652255... Basic SensorFusion implementation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
