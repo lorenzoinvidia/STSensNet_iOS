@@ -29,6 +29,13 @@ SCNScene *mScene;
 SCNNode *mObjectNode;
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.featureLabel.text = featureLabelText;
+    mQuatReset = GLKQuaternionIdentity;
+}
+
+
 //- (void)sceneViewSetup{
 //    mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
 //    mObjectNode = [mScene.rootNode childNodeWithName:SCENE_MODEL_NAME recursively:YES];
@@ -37,13 +44,6 @@ SCNNode *mObjectNode;
 //    [self.sceneView prepareObjects:@[mObjectNode] withCompletionHandler:nil];
 //    self.sceneView.scene = mScene;
 //}
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.featureLabel.text = featureLabelText;
-    mQuatReset = GLKQuaternionIdentity;
-}
 
 
 //- (void) enableSensorFusionNotification {
