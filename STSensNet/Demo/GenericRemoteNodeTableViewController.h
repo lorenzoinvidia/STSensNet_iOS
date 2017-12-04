@@ -39,7 +39,14 @@
 #import <BlueSTSDK/BlueSTSDKNode.h>
 #import <BlueSTSDK_Gui/BlueSTSDKViewControllerMenuDelegate.h>
 
-@protocol GenericRemoteNodeTableViewControllerDelegate <NSObject>
+
+/**
+ *  View that contains a line for each remote node
+ */
+@interface GenericRemoteNodeTableViewController : UIViewController
+@property (retain, nonatomic) BlueSTSDKNode *node;
+@property (retain, nonatomic) id<BlueSTSDKViewControllerMenuDelegate> menuDelegate;
+
 
 /**
  *  Get the new view controller when the cube button is pressed.
@@ -49,17 +56,6 @@
  *  @return view controller to display after the seleciton.
  */
 -(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)node andId:(uint16_t)nodeId;
-
-@end
-
-
-/**
- *  View that contains a line for each remote node
- */
-@interface GenericRemoteNodeTableViewController : UIViewController
-@property (retain, nonatomic) BlueSTSDKNode *node;
-@property (retain, nonatomic) id<BlueSTSDKViewControllerMenuDelegate> menuDelegate;
-@property (retain, nonatomic) id <GenericRemoteNodeTableViewControllerDelegate> idDelegate;
 
 
 @end

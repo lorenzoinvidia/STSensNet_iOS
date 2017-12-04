@@ -406,17 +406,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LD2-da-keE">
+                                <rect key="frame" x="32" y="64" width="311" height="595"/>
+                            </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="centerX" secondItem="WQL-wZ-ijM" secondAttribute="centerX" id="HCL-YK-dLV"/>
+                            <constraint firstItem="LD2-da-keE" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="16" id="M0f-Eu-t2p"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YLz-18-Rcz" secondAttribute="trailing" constant="8" id="N0C-YV-vxN"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="8" id="PP8-gK-5Ae"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LD2-da-keE" secondAttribute="trailing" constant="16" id="Py6-ad-CaD"/>
+                            <constraint firstItem="s8c-ru-paE" firstAttribute="top" secondItem="LD2-da-keE" secondAttribute="bottom" constant="8" id="QUA-Kx-onN"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="top" secondItem="G9l-g2-JQz" secondAttribute="bottom" constant="16" id="eyI-0y-B5V"/>
+                            <constraint firstItem="LD2-da-keE" firstAttribute="top" secondItem="YLz-18-Rcz" secondAttribute="bottom" constant="6.5" id="lVb-Ql-2bv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="featureLabel" destination="YLz-18-Rcz" id="bI5-M8-qUO"/>
+                        <outlet property="sceneView" destination="LD2-da-keE" id="x0S-hh-Gxd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHY-40-Idl" userLabel="First Responder" sceneMemberID="firstResponder"/>
