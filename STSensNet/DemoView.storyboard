@@ -400,27 +400,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLz-18-Rcz">
-                                <rect key="frame" x="24" y="36" width="327" height="21.5"/>
+                                <rect key="frame" x="24" y="36" width="327" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tV6-hS-iPo">
+                                <rect key="frame" x="32" y="64" width="311" height="595"/>
+                            </sceneKitView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="s8c-ru-paE" firstAttribute="top" secondItem="tV6-hS-iPo" secondAttribute="bottom" constant="8" id="2VA-NX-jYL"/>
+                            <constraint firstItem="tV6-hS-iPo" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="16" id="9ks-YS-u6H"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="centerX" secondItem="WQL-wZ-ijM" secondAttribute="centerX" id="HCL-YK-dLV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YLz-18-Rcz" secondAttribute="trailing" constant="8" id="N0C-YV-vxN"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="8" id="PP8-gK-5Ae"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tV6-hS-iPo" secondAttribute="trailing" constant="16" id="aUK-zf-uMW"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="top" secondItem="G9l-g2-JQz" secondAttribute="bottom" constant="16" id="eyI-0y-B5V"/>
+                            <constraint firstItem="tV6-hS-iPo" firstAttribute="top" secondItem="YLz-18-Rcz" secondAttribute="bottom" constant="6" id="ut2-U8-hDL"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="featureLabel" destination="YLz-18-Rcz" id="bI5-M8-qUO"/>
+                        <outlet property="sceneView" destination="tV6-hS-iPo" id="sIW-Vo-cgo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHY-40-Idl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="935"/>
+            <point key="canvasLocation" x="184.80000000000001" y="934.18290854572717"/>
         </scene>
     </scenes>
     <resources>
