@@ -33,6 +33,7 @@
 		66FD405C1E9CDEE100711F26 /* st_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD405B1E9CDEE100711F26 /* st_images.xcassets */; };
 		ED7318EE1FCAEE1800C0F49A /* PlotFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */; };
 		EDBDBEE71FD5BA910080977B /* SensorFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */; };
+		EDBDBEEE1FD5CAAE0080977B /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = EDBDBEEC1FD5CAAD0080977B /* art.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +146,7 @@
 		ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlotFeatureViewController.m; path = Demo/PlotFeatureViewController.m; sourceTree = "<group>"; };
 		EDBDBEE51FD5BA900080977B /* SensorFusionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SensorFusionViewController.h; path = Demo/SensorFusionViewController.h; sourceTree = "<group>"; };
 		EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SensorFusionViewController.m; path = Demo/SensorFusionViewController.m; sourceTree = "<group>"; };
+		EDBDBEEC1FD5CAAD0080977B /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 			children = (
 				6611A1A91CAAAD1200476E8B /* Demo */,
 				6611A1421CAA57C500476E8B /* Main.storyboard */,
+				EDBDBEEC1FD5CAAD0080977B /* art.scnassets */,
 				6611A1451CAA57C500476E8B /* Assets.xcassets */,
 				6611A13C1CAA57C500476E8B /* AppDelegate.h */,
 				6611A13D1CAA57C500476E8B /* AppDelegate.m */,
@@ -472,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663B9B241DA3D97F0067DAFC /* DemoView.storyboard in Resources */,
+				EDBDBEEE1FD5CAAE0080977B /* art.scnassets in Resources */,
 				6611A1461CAA57C500476E8B /* Assets.xcassets in Resources */,
 				6611A1441CAA57C500476E8B /* Main.storyboard in Resources */,
 				6611A1821CAA61BC00476E8B /* text.html in Resources */,
