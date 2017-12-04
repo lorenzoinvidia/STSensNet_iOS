@@ -7,6 +7,13 @@
 //
 
 #import "SensorFusionViewController.h"
+#import <GLKit/GLKit.h>
+#import <BlueSTSDK_Gui/MBProgressHUD.h>
+#import <BlueSTSDK/BlueSTSDKFeatureMemsSensorFusionCompact.h>
+
+#define SCENE_MODEL_FILE @"art.scnassets/cubeModel.dae"
+#define SCENE_MODEL_NAME @"Cube"
+#define CUBE_DEFAULT_SCALE 1.5f
 
 @interface SensorFusionViewController ()
 
@@ -37,8 +44,8 @@ SCNNode *mObjectNode;
 //    [self.sceneView prepareObjects:@[mObjectNode] withCompletionHandler:nil];
 //    self.sceneView.scene = mScene;
 //}
-
-
+//
+//
 //- (void) enableSensorFusionNotification {
 //    mSensorFusionFeature = (BlueSTSDKFeatureMemsSensorFusion *)
 //    [self.node getFeatureOfType:BlueSTSDKFeatureMemsSensorFusionCompact.class];
@@ -52,14 +59,14 @@ SCNNode *mObjectNode;
 //        //[self.view makeToast:@"Sensor Fusion NotFound"];
 //    }
 //}
-
-
+//
+//
 //- (void) viewDidAppear:(BOOL)animated {
 //    [super viewDidAppear:animated];
 //    [self enableSensorFusionNotification];
 //}
-
-
+//
+//
 //- (void) disableSensorFusionNotification {
 //    if(mSensorFusionFeature!=nil){
 //        [self.node disableNotification:mSensorFusionFeature];
