@@ -7,20 +7,16 @@
 //
 
 #import "SensorFusionViewController.h"
-#import <GLKit/GLKit.h>
-#import <BlueSTSDK_Gui/MBProgressHUD.h>
-#import <BlueSTSDK/BlueSTSDKFeatureMemsSensorFusionCompact.h>
 
 #define SCENE_MODEL_FILE @"art.scnassets/cubeModel.dae"
 #define SCENE_MODEL_NAME @"Cube"
 #define CUBE_DEFAULT_SCALE 1.5f
 
 @interface SensorFusionViewController ()
-
+//<BlueSTSDKFeatureDelegate>
 @end
 
 @implementation SensorFusionViewController
-@synthesize featureLabel, featureLabelText;
 
 
 BlueSTSDKFeatureMemsSensorFusion *mSensorFusionFeature;
@@ -31,11 +27,42 @@ SCNNode *mObjectNode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.featureLabel.text = featureLabelText;
+    
+    self.featureLabel.text = self.featureLabelText;
     mQuatReset = GLKQuaternionIdentity;
 }
 
-
+///**
+// *  retrive and enable the feature needed
+// */
+//- (void) viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    [self enableSensorFusionNotification];
+//}
+//
+//
+///**
+// *  get the last data received by the node
+// *
+// *  @param nodeId nodeId to search
+// *
+// *  @return data associated to that node
+// */
+//-(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
+//    GenericRemoteNodeData *rData;
+//    @synchronized (self.mRemoteNodes) {
+//        for(unsigned long i=0;i<self.mRemoteNodes.count;i++){
+//            GenericRemoteNodeData *data = [self.mRemoteNodes objectAtIndex:i];
+//            if(data.nodeId==nodeId){
+//                rData = data;
+//            }
+//        }
+//        return rData;
+//    }
+//}
+//
+//
+//
 //- (void)sceneViewSetup{
 //    mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
 //    mObjectNode = [mScene.rootNode childNodeWithName:SCENE_MODEL_NAME recursively:YES];
@@ -45,31 +72,25 @@ SCNNode *mObjectNode;
 //    self.sceneView.scene = mScene;
 //}
 //
-//
 //- (void) enableSensorFusionNotification {
 //    mSensorFusionFeature = (BlueSTSDKFeatureMemsSensorFusion *)
-//    [self.node getFeatureOfType:BlueSTSDKFeatureMemsSensorFusionCompact.class];
+//    [self.activeNode getFeatureOfType:BlueSTSDKFeatureMemsSensorFusionCompact.class];
 //    if(mSensorFusionFeature==nil)
 //        mSensorFusionFeature = (BlueSTSDKFeatureMemsSensorFusion*)
-//        [self.node getFeatureOfType:BlueSTSDKFeatureMemsSensorFusion.class];
+//        [self.activeNode getFeatureOfType:BlueSTSDKFeatureMemsSensorFusion.class];
 //    if(mSensorFusionFeature!=nil){
 //        [mSensorFusionFeature addFeatureDelegate:self];
-//        [self.node enableNotification:mSensorFusionFeature];
+//        [self.activeNode enableNotification:mSensorFusionFeature];
 //    }else{
 //        //[self.view makeToast:@"Sensor Fusion NotFound"];
 //    }
 //}
 //
 //
-//- (void) viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    [self enableSensorFusionNotification];
-//}
-//
 //
 //- (void) disableSensorFusionNotification {
 //    if(mSensorFusionFeature!=nil){
-//        [self.node disableNotification:mSensorFusionFeature];
+//        [self.activeNode disableNotification:mSensorFusionFeature];
 //        [mSensorFusionFeature removeFeatureDelegate:self];
 //    }
 //}

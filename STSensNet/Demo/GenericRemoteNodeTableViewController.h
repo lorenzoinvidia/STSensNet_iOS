@@ -55,7 +55,7 @@
  *
  *  @return view controller to display after the seleciton.
  */
--(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)node andId:(uint16_t)nodeId;
+-(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)activeNode andId:(uint16_t)nodeId;
 
 
 @end

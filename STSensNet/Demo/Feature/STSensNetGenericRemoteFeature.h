@@ -213,4 +213,159 @@
 -(void)enableMicLevelForNode:(uint16_t)nodeId enabled:(bool)state;
 
 
+//Added
+
+/**
+ * enable the notification for receive the acceleration values
+ *
+ * @param nodeId if of the remote node where enable the notificaiton
+ * @param state true for enable the notification, false for disable it
+ */
+-(void)enableAcceleration:(uint16_t)nodeId enabled:(bool)state;
+
+/**
+ * enable the notification for receive the gyroscope values
+ *
+ * @param nodeId if of the remote node where enable the notificaiton
+ * @param state true for enable the notification, false for disable it
+ */
+-(void)enableGyroscope:(uint16_t)nodeId enabled:(bool)state;
+
+/**
+ * enable the notification for receive the magnetometer values
+ *
+ * @param nodeId if of the remote node where enable the notificaiton
+ * @param state true for enable the notification, false for disable it
+ */
+-(void)enableMagnetometer:(uint16_t)nodeId enabled:(bool)state;
+
+/**
+ * enable the notification for receive the sensor fusion values
+ *
+ * @param nodeId if of the remote node where enable the notificaiton
+ * @param state true for enable the notification, false for disable it
+ */
+-(void)enableSensorFusion:(uint16_t)nodeId enabled:(bool)state;
+
+
+
+/**
+ *  extract the magnetometer value of the X axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return magetometer value of the x axis
+ */
++(float)getMagX:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the magnetometer value of the y axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return magetometer value of the y axis
+ */
++(float)getMagY:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the magnetometer value of the z axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return magetometer value of the z axis
+ */
++(float)getMagZ:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  gyroscope data in the x Axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return  gyroscope data in the x Axis
+ */
++(float)getGyroX:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  gyroscope data in the y Axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return  gyroscope data in the y Axis
+ */
++(float)getGyroY:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  gyroscope data in the z Axis
+ *
+ *  @param sample data read from the node
+ *
+ *  @return  gyroscope data in the z Axis
+ */
++(float)getGyroZ:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  return the x component of the acceleration
+ *
+ *  @param sample data read from the node
+ *  @return acceleration in the x axis
+ */
++(float)getAccX:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  return the y component of the acceleration
+ *
+ *  @param sample data read from the node
+ *
+ *  @return acceleration in the y axis
+ */
++(float)getAccY:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  return the z component of the acceleration
+ *
+ *  @param sample data read from the node
+ *
+ *  @return acceleration in the z axis
+ */
++(float)getAccZ:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the x quaternion component
+ *
+ *  @param sample data read from the node
+ *
+ *  @return x quaternion component
+ */
++(float)getQi:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the y quaternion component
+ *
+ *  @param sample data read from the node
+ *
+ *  @return y quaternion component
+ */
++(float)getQj:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the z quaternion component
+ *
+ *  @param data sample read from the node
+ *
+ *  @return z quaternion component
+ */
++(float)getQk:(BlueSTSDKFeatureSample*)sample;
+
+/**
+ *  extract the w quaternion component
+ *
+ *  @param sample data read from the node
+ *
+ *  @return w quaternion component
+ */
+//+(float)getQs:(BlueSTSDKFeatureSample*)sample;
+
+
+
+
 @end

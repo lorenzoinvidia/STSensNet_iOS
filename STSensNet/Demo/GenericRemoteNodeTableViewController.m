@@ -269,11 +269,26 @@
         
     } else if ([segue.identifier  isEqualToString: @"cubeSegue"]) {
         sensorFusionViewController.featureLabelText = @"Sensor Fusion";
-        
+
     } else {
         NSLog(@"Different segue ::: ROW257"); //DEBUG
     }
 }
+
+
+//-(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)activeNode andId:(uint16_t)nodeId{
+//
+////    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"DemoView" bundle:nil];
+//    SensorFusionViewController *sensorFusionViewController =
+//    (SensorFusionViewController*) [self.storyboard instantiateInitialViewController];
+//
+//    sensorFusionViewController.featureLabelText = @"Sensor Fusion";
+//    sensorFusionViewController.activeNode=activeNode;
+////    sensorFusionViewController.nodeId=nodeId;
+//
+//    return sensorFusionViewController;
+//}
+
 
 
 

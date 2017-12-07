@@ -12,11 +12,10 @@
 @end
 
 @implementation PlotFeatureViewController
-@synthesize featureLabel, featureLabelText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.featureLabel.text = featureLabelText;
+    self.featureLabel.text = self.featureLabelText;
 }
 
 - (void)didReceiveMemoryWarning {

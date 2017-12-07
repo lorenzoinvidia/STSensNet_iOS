@@ -7,12 +7,35 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GenericRemoteNodeData.h"
+#import <BlueSTSDK/BlueSTSDKNode.h>
 #import <SceneKit/SceneKit.h>
-#import "GenericRemoteNodeTableViewController.h"
+#import <GLKit/GLKit.h>
+#import <BlueSTSDK_Gui/MBProgressHUD.h>
+#import <BlueSTSDK/BlueSTSDKFeatureMemsSensorFusionCompact.h>
 
-@interface SensorFusionViewController : GenericRemoteNodeTableViewController
+
+@interface SensorFusionViewController : UIViewController
+
+/*
+ *  The active central node
+ */
+@property (retain, nonatomic) BlueSTSDKNode *activeNode;
+
+/*
+ *  The active remote node id
+ */
+@property (readwrite, nonatomic) uint16_t * nodeId;
+
+/*
+ *  The active remote node
+ */
+@property (retain, nonatomic) GenericRemoteNodeData * mRemoteNode;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *featureLabel;
 @property (strong, nonatomic) NSString * featureLabelText;
+
 @property (weak, nonatomic) IBOutlet SCNView *sceneView;
 
 @end
