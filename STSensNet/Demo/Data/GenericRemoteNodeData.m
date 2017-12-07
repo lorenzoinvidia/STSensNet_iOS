@@ -39,6 +39,8 @@
 
 @implementation GenericRemoteNodeData
 
+
+
 +(instancetype)initWithNodeId:(uint16_t)nodeId{
     GenericRemoteNodeData *data = [[GenericRemoteNodeData alloc] init];
     data.nodeId=nodeId;
@@ -50,8 +52,22 @@
     _proximity=-1;
     _lastMotionEvent=-1;
     _micLevel=-1;
+    _accelerationX=-2001;
+    _accelerationY=-2001;
+    _accelerationZ=-2001;
+    _gyroscopeX=NAN;
+    _gyroscopeY=NAN;
+    _gyroscopeZ=NAN;
+    _magnetometerX=-2001;
+    _magnetometerY=-2001;
+    _magnetometerZ=-2001;
+    _sFusionQI=NAN;
+    _sFusionQJ=NAN;
+    _sFusionQK=NAN;
+    
     return self;
 }
+
 
 -(BOOL) hasProximity{
     return _proximity>=0;
@@ -75,5 +91,73 @@
         return;
     _micLevel=micLevel;
 }
+
+//Added
+
+//Accelerometer
+-(void)setAccelerationX:(int)accelerationX{
+    if(accelerationX>=-2000 && accelerationX<=2000)
+        _accelerationX=accelerationX;
+}
+
+-(void)setAccelerationY:(int)accelerationY{
+    if(accelerationY>=-2000 && accelerationY<=2000)
+        _accelerationY=accelerationY;
+}
+
+-(void)setAccelerationZ:(int)accelerationZ{
+    if(accelerationZ>=-2000 && accelerationZ<=2000)
+        _accelerationZ=accelerationZ;
+}
+
+// Gyroscope
+-(void)setGyroscopeX:(float)gyroscopeX{
+    if(gyroscopeX != NAN)
+        _gyroscopeX=gyroscopeX;
+}
+
+-(void)setGyroscopeY:(float)gyroscopeY{
+    if(gyroscopeY != NAN)
+        _gyroscopeY=gyroscopeY;
+}
+
+-(void)setGyroscopeZ:(float)gyroscopeZ{
+    if(_gyroscopeZ != NAN)
+        _gyroscopeZ=gyroscopeZ;
+}
+
+// Magnetometer
+-(void)setMagnetometerX:(int)magnetometerX{
+    if(magnetometerX>=-2000 && magnetometerX<=2000)
+        _magnetometerX=magnetometerX;
+}
+
+-(void)setMagnetometerY:(int)magnetometerY{
+    if(magnetometerY>=-2000 && magnetometerY<=2000)
+        _magnetometerY=magnetometerY;
+}
+
+-(void)setMagnetometerZ:(int)magnetometerZ{
+    if(magnetometerZ>=-2000 && magnetometerZ<=2000)
+        _magnetometerZ=magnetometerZ;
+}
+
+
+// SFusion
+-(void)setSFusionQI:(float)sFusionQI{
+    if(sFusionQI != NAN)
+        _sFusionQI=sFusionQI;
+}
+
+-(void)setSFusionQJ:(float)sFusionQJ{
+    if(sFusionQJ != NAN)
+        _sFusionQJ=sFusionQJ;
+}
+
+-(void)setSFusionQK:(float)sFusionQK{
+    if(sFusionQK != NAN)
+        _sFusionQK=sFusionQK;
+}
+
 
 @end

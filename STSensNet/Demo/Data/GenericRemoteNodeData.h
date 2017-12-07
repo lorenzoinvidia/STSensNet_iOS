@@ -38,6 +38,7 @@
 #import "EnviromentalRemoteNodeData.h"
 
 
+
 /**
  * Class that contains enviromental data and other datas form a remote node
  */
@@ -76,5 +77,39 @@
  * @return true if the node has send some valid proximity values
  */
 -(BOOL) hasProximity;
+
+
+/**
+ * acceleration
+ */
+@property (readwrite,nonatomic, assign) int accelerationX;
+@property (readwrite,nonatomic, assign) int accelerationY;
+@property (readwrite,nonatomic, assign) int accelerationZ;
+@property (readwrite, assign) BOOL isAccelerationEnabled;
+
+/**
+ * gyroscope
+ */
+@property (readwrite,nonatomic, assign) float gyroscopeX;
+@property (readwrite,nonatomic, assign) float gyroscopeY;
+@property (readwrite,nonatomic, assign) float gyroscopeZ;
+@property (readwrite, assign) BOOL isGyroscopeEnabled;
+
+/**
+ * magnetometer
+ */
+@property (readwrite,nonatomic, assign) int magnetometerX;
+@property (readwrite,nonatomic, assign) int magnetometerY;
+@property (readwrite,nonatomic, assign) int magnetometerZ;
+@property (readwrite, assign) BOOL isMagnetometerEnabled;
+
+/**
+ * sensor fusion
+ */
+@property (readwrite,nonatomic, assign) float sFusionQI;
+@property (readwrite,nonatomic, assign) float sFusionQJ;
+@property (readwrite,nonatomic, assign) float sFusionQK;
+@property (readwrite, assign) BOOL isSensorFusionEnabled;
+
 
 @end

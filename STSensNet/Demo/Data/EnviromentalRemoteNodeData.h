@@ -39,6 +39,7 @@
 #import "RemoteNodeData.h"
 
 
+
 /**
  * Class that rappresent a remote node that contains enviromental information
  */

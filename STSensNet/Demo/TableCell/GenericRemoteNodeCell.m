@@ -66,15 +66,14 @@ static NSString *sMicLevelUnit;
     /*
      *  Mems and cube view
      */
-    
     __weak IBOutlet UIView *mMemsView;
   
 }
 @synthesize plotFeatureDelegate;
 
-    /*
-     *  Mems and cube view
-     */
+/*
+*  buttons action
+*/
 
 - (IBAction)accelerometerOn:(UIButton *)sender {
 }
