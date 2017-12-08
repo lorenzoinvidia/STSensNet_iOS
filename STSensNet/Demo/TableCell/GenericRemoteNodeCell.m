@@ -69,7 +69,6 @@ static NSString *sMicLevelUnit;
     __weak IBOutlet UIView *mMemsView;
   
 }
-@synthesize plotFeatureDelegate;
 
 /*
 *  buttons action

@@ -48,14 +48,4 @@
 @property (retain, nonatomic) id<BlueSTSDKViewControllerMenuDelegate> menuDelegate;
 
 
-/**
- *  Get the new view controller when the cube button is pressed.
- *
- *  @param node node seleceted by the user.
- *
- *  @return view controller to display after the seleciton.
- */
--(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)activeNode andId:(uint16_t)nodeId;
-
-
 @end
