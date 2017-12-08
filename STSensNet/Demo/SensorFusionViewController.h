@@ -25,7 +25,7 @@
 /*
  *  The active remote node id
  */
-@property (readwrite, nonatomic) uint16_t * nodeId;
+@property uint16_t * nodeId;
 
 /*
  *  The active remote node

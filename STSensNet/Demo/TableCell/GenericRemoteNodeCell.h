@@ -40,16 +40,6 @@
 
 
 /**
- *  protocol that provides the method to start the plot feature view
- */
-
-@protocol GetThePlotFeatureProtocol <NSObject>
-
--(void)loadPlotView: (UIViewController *)controller;
-@end
-
-
-/**
  *  protocol where the cell will notify a change in the led switch
  */
 @protocol GenericRemoteNodeCellChanges <NSObject>
@@ -78,7 +68,6 @@
  **/
 @interface GenericRemoteNodeCell : EnviromentalRemoteNodeCell
 
-@property (nonatomic, retain) id<GetThePlotFeatureProtocol> plotFeatureDelegate;
 
 /**
  * object where notify if the user enable some notification

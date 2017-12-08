@@ -28,6 +28,12 @@ SCNNode *mObjectNode;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.activeNode) {
+        NSLog(@"activeNode is OK !");
+    }else {
+        NSLog(@"activeNode is nil !");
+    }//DEBUG
+    
     self.featureLabel.text = self.featureLabelText;
     mQuatReset = GLKQuaternionIdentity;
 }

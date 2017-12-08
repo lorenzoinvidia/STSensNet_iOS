@@ -60,6 +60,17 @@
 #define SCANNING_START_NAME @"Scanner Starterd"
 #define SCANNING_STOP_NAME @"Scanner Stopped"
 
+#define ACC_SEGUE @"accelerometerSegue"
+#define GYRO_SEGUE @"gyroscopeSegue"
+#define MAG_SEGUE @"magnetometerSegue"
+#define CUBE_SEGUE @"cubeSegue"
+
+#define ACC_LABEL @"Accelerometer"
+#define GYRO_LABEL @"Gyroscope"
+#define MAG_LABEL @"Magnetometer"
+#define SFUSION_LABEL @"Sensor Fusion"
+
+
 
 @interface GenericRemoteNodeTableViewController ()<UITableViewDataSource,UITableViewDelegate,
     BlueSTSDKFeatureDelegate, EnviromentalRemoteNodeCellChanges,
@@ -250,7 +261,7 @@
 }
 
 /**
- *  switch the segues and assign label text
+ *  switch the segues and pass to the next VC the parameters
  */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
@@ -258,36 +269,23 @@
     SensorFusionViewController * sensorFusionViewController = segue.destinationViewController;
     
     
-    if ([segue.identifier  isEqualToString: @"accelerometerSegue"]) {
-        plotFeatureViewController.featureLabelText = @"Accelerometer plot";
+    if ([segue.identifier  isEqualToString: ACC_SEGUE]) {
+        plotFeatureViewController.featureLabelText = ACC_LABEL;
     
-    } else if ([segue.identifier  isEqualToString: @"gyroscopeSegue"]) {
-        plotFeatureViewController.featureLabelText = @"Gyroscope plot";
+    } else if ([segue.identifier  isEqualToString: GYRO_SEGUE]) {
+        plotFeatureViewController.featureLabelText = GYRO_LABEL;
     
-    } else if ([segue.identifier  isEqualToString: @"magnetometerSegue"]) {
-        plotFeatureViewController.featureLabelText = @"Magnetometer plot";
+    } else if ([segue.identifier  isEqualToString: MAG_SEGUE]) {
+        plotFeatureViewController.featureLabelText = MAG_LABEL;
         
-    } else if ([segue.identifier  isEqualToString: @"cubeSegue"]) {
-        sensorFusionViewController.featureLabelText = @"Sensor Fusion";
+    } else if ([segue.identifier  isEqualToString: CUBE_SEGUE]) {
+        sensorFusionViewController.featureLabelText = SFUSION_LABEL;
+        sensorFusionViewController.activeNode = self.node; //seems ok !!
 
     } else {
         NSLog(@"Different segue ::: ROW257"); //DEBUG
     }
 }
-
-
-//-(UIViewController*) demoViewControllerWithNode:(BlueSTSDKNode*)activeNode andId:(uint16_t)nodeId{
-//
-////    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"DemoView" bundle:nil];
-//    SensorFusionViewController *sensorFusionViewController =
-//    (SensorFusionViewController*) [self.storyboard instantiateInitialViewController];
-//
-//    sensorFusionViewController.featureLabelText = @"Sensor Fusion";
-//    sensorFusionViewController.activeNode=activeNode;
-////    sensorFusionViewController.nodeId=nodeId;
-//
-//    return sensorFusionViewController;
-//}
 
 
 
