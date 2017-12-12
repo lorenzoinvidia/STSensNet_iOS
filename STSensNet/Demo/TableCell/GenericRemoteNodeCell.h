@@ -62,6 +62,23 @@
 
 @end
 
+
+/**
+ *  protocol where the cell will notify its nodeId
+ */
+@protocol GenericRemoteNodeCellId <NSObject>
+
+/**
+ *  method called when one of the MemsView button is pressed
+ *
+ *  @param nodeId remote node id
+ */
+-(void)notifyRemoteCellId:(uint16_t)nodeId;
+
+@end
+
+
+
 /**
  * class that will manage the data from a remote node with the proximity, mic level
  * and last moviment event
@@ -74,8 +91,16 @@
  */
 @property id<GenericRemoteNodeCellChanges> genericDelegate;
 
--(void)showMemsView;
+/**
+ * object where notify the remote node id
+ */
+@property id<GenericRemoteNodeCellId> idDelegate;
 
+
+/**
+ * just declared. This func shows the mems view in the cell
+ */
+-(void)showMemsView;
 
 
 /**

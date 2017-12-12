@@ -1,10 +1,39 @@
-//
-//  SensorFusionViewController.m
-//  STSensNet
-//
-//  Created by Lorenzo Invidia on 04/12/2017.
-//  Copyright © 2017 STCentralLab. All rights reserved.
-//
+/*
+ * Copyright (c) 2017  STMicroelectronics – All rights reserved
+ * The STMicroelectronics corporate logo is a trademark of STMicroelectronics
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * - Redistributions of source code must retain the above copyright notice, this list of conditions
+ *   and the following disclaimer.
+ *
+ * - Redistributions in binary form must reproduce the above copyright notice, this list of
+ *   conditions and the following disclaimer in the documentation and/or other materials provided
+ *   with the distribution.
+ *
+ * - Neither the name nor trademarks of STMicroelectronics International N.V. nor any other
+ *   STMicroelectronics company nor the names of its contributors may be used to endorse or
+ *   promote products derived from this software without specific prior written permission.
+ *
+ * - All of the icons, pictures, logos and other images that are provided with the source code
+ *   in a directory whose title begins with st_images may only be used for internal purposes and
+ *   shall not be redistributed to any third party or modified in any way.
+ *
+ * - Any redistributions in binary form shall not include the capability to display any of the
+ *   icons, pictures, logos and other images that are provided with the source code in a directory
+ *   whose title begins with st_images.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+ * AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+ * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+ * OF SUCH DAMAGE.
+ */
 
 #import "SensorFusionViewController.h"
 
@@ -12,14 +41,18 @@
 #define SCENE_MODEL_NAME @"Cube"
 #define CUBE_DEFAULT_SCALE 1.5f
 
-@interface SensorFusionViewController ()
-//<BlueSTSDKFeatureDelegate>
+@interface SensorFusionViewController ()<BlueSTSDKFeatureDelegate>
 @end
+
 
 @implementation SensorFusionViewController
 
+/**
+ *  array of remote node data
+ */
+NSMutableArray<GenericRemoteNodeData*> *mRemoteNodes;
 
-BlueSTSDKFeatureMemsSensorFusion *mSensorFusionFeature;
+STSensNetGenericRemoteFeature *mRemoteFeature;
 GLKQuaternion mQuatReset;
 SCNScene *mScene;
 SCNNode *mObjectNode;
@@ -34,103 +67,170 @@ SCNNode *mObjectNode;
         NSLog(@"activeNode is nil !");
     }//DEBUG
     
+    if (self.nodeId) {
+        NSLog(@"nodeId is %@", [NSString stringWithFormat:@"0x%0.4X",self.nodeId]);
+    }else {
+        NSLog(@"nodeId is nil !");
+    }//DEBUG
+    
+
+    mRemoteNodes = [NSMutableArray array];
     self.featureLabel.text = self.featureLabelText;
+    [self sceneViewSetup];
     mQuatReset = GLKQuaternionIdentity;
 }
 
-///**
-// *  retrive and enable the feature needed
-// */
-//- (void) viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//    [self enableSensorFusionNotification];
-//}
+
+- (void) viewDidAppear:(BOOL)animated {
+    NSLog(@"viewDidAppear");//DEBUG
+    [super viewDidAppear:animated];
+    
+    mRemoteFeature =(STSensNetGenericRemoteFeature*)
+    [self.activeNode getFeatureOfType:STSensNetGenericRemoteFeature.class];
+    if (mRemoteFeature!=nil){
+        
+        NSLog(@"(mRemoteFeature!=nil -- ROW 68");//DEBUG
+        
+        [mRemoteFeature addFeatureDelegate:self];
+        [self.activeNode enableNotification:mRemoteFeature];
+        [self sensorFusionNotificationDidChangeForNodeId:self.nodeId newState:true];
+        
+    }
+}
+
+
+- (void) viewWillDisappear:(BOOL)animated {
+    NSLog(@"viewWillDisappear");//DEBUG
+    [super viewWillDisappear:animated];
+    
+    if(mRemoteFeature!=nil) {
+        [self sensorFusionNotificationDidChangeForNodeId:self.nodeId newState:false];
+        [mRemoteFeature removeFeatureDelegate:self];
+        [self.activeNode disableNotification:mRemoteFeature];
+    }
+}
+
+
+- (void)sceneViewSetup{
+    NSLog(@"sceneViewSetup");//DEBUG
+
+    mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
+    mObjectNode = [mScene.rootNode childNodeWithName:SCENE_MODEL_NAME recursively:YES];
+    mObjectNode.scale = SCNVector3Make(CUBE_DEFAULT_SCALE, CUBE_DEFAULT_SCALE, CUBE_DEFAULT_SCALE);
+    
+    [self.sceneView prepareObjects:@[mObjectNode] withCompletionHandler:nil];
+    self.sceneView.scene = mScene;
+}
+
+
+/**
+ *  get the last data received by the node, it the node is new we create an empty
+ * class
+ *
+ *  @param nodeId nodeId to search
+ *
+ *  @return data associated to that node
+ */
+-(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
+    
+    NSLog(@"getNodeData ROW 105");//DEBUG
+    
+    @synchronized (mRemoteNodes) {
+        for(unsigned long i=0;i<mRemoteNodes.count;i++){
+            GenericRemoteNodeData *data = [mRemoteNodes objectAtIndex:i];
+            if(data.nodeId==nodeId){
+                return data;
+            }//if
+        }
+        //else, it's a new node
+        //create a new remote node data
+        GenericRemoteNodeData *data =
+        [GenericRemoteNodeData initWithNodeId:nodeId];
+        
+        [mRemoteNodes addObject:data];
+        
+        NSLog(@"mRemoteNodes with %lu elements", (unsigned long)mRemoteNodes.count);//DEBUG
+        return data;
+    }
+    
+}
+
+#pragma mark - BlueSTSDKFeatureDelegate
+
+/**
+ *  update the node data and update the rotation
+ *
+ *  @param feature feature tha has an update
+ *  @param sample  new data sample
+ */
+- (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
+   
+    NSLog(@"didUpdateFeature ROW 134");
+
+    uint16_t nodeId = [STSensNetGenericRemoteFeature getNodeId:sample];
+    
+    NSLog(@"didUF node id: %u", nodeId);
+    
+    //update the remote data struct
+    GenericRemoteNodeData *data = [self getNodeData:nodeId];
+//    data.temperature = [STSensNetGenericRemoteFeature getTemperature:sample];
+//    data.pressure = [STSensNetGenericRemoteFeature getPressure:sample];
+//    data.humidity = [STSensNetGenericRemoteFeature getHumidity:sample];
+//    data.ledStatus = [STSensNetGenericRemoteFeature getLedStatus:sample];
+//    data.lastMotionEvent = [STSensNetGenericRemoteFeature getLastMovimentDetected:sample];
+//    data.proximity = [STSensNetGenericRemoteFeature getProximity:sample];
+//    data.micLevel = [STSensNetGenericRemoteFeature getMicLevel:sample];
+//    data.luminosity = [STSensNetGenericRemoteFeature getLuminosity:sample];
 //
+//    data.accelerationX = [STSensNetGenericRemoteFeature getAccX:sample];
+//    data.accelerationY = [STSensNetGenericRemoteFeature getAccY:sample];
+//    data.accelerationZ = [STSensNetGenericRemoteFeature getAccZ:sample];
 //
-///**
-// *  get the last data received by the node
-// *
-// *  @param nodeId nodeId to search
-// *
-// *  @return data associated to that node
-// */
-//-(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
-//    GenericRemoteNodeData *rData;
-//    @synchronized (self.mRemoteNodes) {
-//        for(unsigned long i=0;i<self.mRemoteNodes.count;i++){
-//            GenericRemoteNodeData *data = [self.mRemoteNodes objectAtIndex:i];
-//            if(data.nodeId==nodeId){
-//                rData = data;
-//            }
-//        }
-//        return rData;
-//    }
-//}
+//    data.gyroscopeX = [STSensNetGenericRemoteFeature getGyroX:sample];
+//    data.gyroscopeY = [STSensNetGenericRemoteFeature getGyroY:sample];
+//    data.gyroscopeZ = [STSensNetGenericRemoteFeature getGyroZ:sample];
 //
-//
-//
-//- (void)sceneViewSetup{
-//    mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
-//    mObjectNode = [mScene.rootNode childNodeWithName:SCENE_MODEL_NAME recursively:YES];
-//    mObjectNode.scale = SCNVector3Make(CUBE_DEFAULT_SCALE, CUBE_DEFAULT_SCALE, CUBE_DEFAULT_SCALE);
-//
-//    [self.sceneView prepareObjects:@[mObjectNode] withCompletionHandler:nil];
-//    self.sceneView.scene = mScene;
-//}
-//
-//- (void) enableSensorFusionNotification {
-//    mSensorFusionFeature = (BlueSTSDKFeatureMemsSensorFusion *)
-//    [self.activeNode getFeatureOfType:BlueSTSDKFeatureMemsSensorFusionCompact.class];
-//    if(mSensorFusionFeature==nil)
-//        mSensorFusionFeature = (BlueSTSDKFeatureMemsSensorFusion*)
-//        [self.activeNode getFeatureOfType:BlueSTSDKFeatureMemsSensorFusion.class];
-//    if(mSensorFusionFeature!=nil){
-//        [mSensorFusionFeature addFeatureDelegate:self];
-//        [self.activeNode enableNotification:mSensorFusionFeature];
-//    }else{
-//        //[self.view makeToast:@"Sensor Fusion NotFound"];
-//    }
-//}
-//
-//
-//
-//- (void) disableSensorFusionNotification {
-//    if(mSensorFusionFeature!=nil){
-//        [self.activeNode disableNotification:mSensorFusionFeature];
-//        [mSensorFusionFeature removeFeatureDelegate:self];
-//    }
-//}
-//
-//
-//- (void) viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    [self disableSensorFusionNotification];
-//}
-//
-//
-//// Update Rotation method
-//-(void) updateRotation:(BlueSTSDKFeatureSample*)sample{
-//    GLKQuaternion temp;
-//    temp.z = -[BlueSTSDKFeatureMemsSensorFusionCompact getQi:sample];
-//    temp.y = [BlueSTSDKFeatureMemsSensorFusionCompact getQj:sample];
-//    temp.x = [BlueSTSDKFeatureMemsSensorFusionCompact getQk:sample];
-//    temp.w = [BlueSTSDKFeatureMemsSensorFusionCompact getQs:sample];
-//    temp = GLKQuaternionMultiply(mQuatReset,temp);
-//    SCNQuaternion rot;
-//    rot.x = temp.x;
-//    rot.y = temp.y;
-//    rot.z = temp.z;
-//    rot.w = temp.w;
-//    dispatch_async(dispatch_get_main_queue(),^{
-//        mObjectNode.orientation = rot;
-//    });
-//}
-//
-//
-//#pragma mark - BlueSTSDKFeatureDelegate
-//- (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
-//    if(feature == mSensorFusionFeature)
-//        [self updateRotation:sample];
-//}
+//    data.magnetometerX = [STSensNetGenericRemoteFeature getMagX:sample];
+//    data.magnetometerY = [STSensNetGenericRemoteFeature getMagY:sample];
+//    data.magnetometerZ = [STSensNetGenericRemoteFeature getMagZ:sample];
+    
+    data.sFusionQI = [STSensNetGenericRemoteFeature getQi:sample];
+    data.sFusionQJ = [STSensNetGenericRemoteFeature getQj:sample];
+    data.sFusionQK = [STSensNetGenericRemoteFeature getQk:sample];
+    
+        GLKQuaternion temp;
+        temp.z = -data.sFusionQI;
+        temp.y = -data.sFusionQJ;
+        temp.x = data.sFusionQK;
+        temp.w = sqrt(1-((temp.x*temp.x)+(temp.y*temp.y)+(temp.z*temp.z)));
+        
+        temp = GLKQuaternionMultiply(mQuatReset,temp);
+        SCNQuaternion rot;
+        rot.x = temp.x;
+        rot.y = temp.y;
+        rot.z = temp.z;
+        rot.w = temp.w;
+        dispatch_async(dispatch_get_main_queue(),^{
+            mObjectNode.orientation = rot;
+        });
+    
+    
+    
+}
+
+/**
+ * function called when the sensor fusion notification is enabled for a node
+ *
+ * @param nodeId node where the user enable the notificaiton
+ * @param state true if enable the notification, false for disable it
+ */
+-(void)sensorFusionNotificationDidChangeForNodeId:(uint16_t)nodeId newState:(bool)state{
+    [self getNodeData:nodeId].isSensorFusionEnabled=state;
+    if(state){
+        [mRemoteFeature enableSensorFusionForNode:nodeId enabled:state];
+    }else{
+        [mRemoteFeature enableSensorFusionForNode:nodeId enabled:false];
+    }
+}
 
 @end

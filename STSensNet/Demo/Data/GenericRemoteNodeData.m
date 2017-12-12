@@ -94,7 +94,7 @@
 
 //Added
 
-//Accelerometer
+// Acceleration
 -(void)setAccelerationX:(int)accelerationX{
     if(accelerationX>=-2000 && accelerationX<=2000)
         _accelerationX=accelerationX;
@@ -112,18 +112,21 @@
 
 // Gyroscope
 -(void)setGyroscopeX:(float)gyroscopeX{
-    if(gyroscopeX != NAN)
-        _gyroscopeX=gyroscopeX;
+    if(isnan(gyroscopeX))
+        return;
+    _gyroscopeX=gyroscopeX;
 }
 
 -(void)setGyroscopeY:(float)gyroscopeY{
-    if(gyroscopeY != NAN)
-        _gyroscopeY=gyroscopeY;
+    if(isnan(gyroscopeY))
+        return;
+    _gyroscopeY=gyroscopeY;
 }
 
 -(void)setGyroscopeZ:(float)gyroscopeZ{
-    if(_gyroscopeZ != NAN)
-        _gyroscopeZ=gyroscopeZ;
+    if(isnan(gyroscopeZ))
+        return;
+    _gyroscopeZ=gyroscopeZ;
 }
 
 // Magnetometer
@@ -145,18 +148,21 @@
 
 // SFusion
 -(void)setSFusionQI:(float)sFusionQI{
-    if(sFusionQI != NAN)
-        _sFusionQI=sFusionQI;
+    if(isnan(sFusionQI))
+        return;
+    _sFusionQI=sFusionQI;
 }
 
 -(void)setSFusionQJ:(float)sFusionQJ{
-    if(sFusionQJ != NAN)
-        _sFusionQJ=sFusionQJ;
+    if(isnan(sFusionQJ))
+        return;
+    _sFusionQJ=sFusionQJ;
 }
 
 -(void)setSFusionQK:(float)sFusionQK{
-    if(sFusionQK != NAN)
-        _sFusionQK=sFusionQK;
+    if(isnan(sFusionQK))
+        return;
+    _sFusionQK=sFusionQK;
 }
 
 

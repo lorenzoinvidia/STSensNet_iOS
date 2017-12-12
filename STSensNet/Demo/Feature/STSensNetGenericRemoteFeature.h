@@ -221,7 +221,7 @@
  * @param nodeId if of the remote node where enable the notificaiton
  * @param state true for enable the notification, false for disable it
  */
--(void)enableAcceleration:(uint16_t)nodeId enabled:(bool)state;
+-(void)enableAccelerationForNode:(uint16_t)nodeId enabled:(bool)state;
 
 /**
  * enable the notification for receive the gyroscope values
@@ -229,7 +229,7 @@
  * @param nodeId if of the remote node where enable the notificaiton
  * @param state true for enable the notification, false for disable it
  */
--(void)enableGyroscope:(uint16_t)nodeId enabled:(bool)state;
+-(void)enableGyroscopeForNode:(uint16_t)nodeId enabled:(bool)state;
 
 /**
  * enable the notification for receive the magnetometer values
@@ -237,7 +237,7 @@
  * @param nodeId if of the remote node where enable the notificaiton
  * @param state true for enable the notification, false for disable it
  */
--(void)enableMagnetometer:(uint16_t)nodeId enabled:(bool)state;
+-(void)enableMagnetometerForNode:(uint16_t)nodeId enabled:(bool)state;
 
 /**
  * enable the notification for receive the sensor fusion values
@@ -245,7 +245,7 @@
  * @param nodeId if of the remote node where enable the notificaiton
  * @param state true for enable the notification, false for disable it
  */
--(void)enableSensorFusion:(uint16_t)nodeId enabled:(bool)state;
+-(void)enableSensorFusionForNode:(uint16_t)nodeId enabled:(bool)state;
 
 
 
@@ -357,15 +357,21 @@
 +(float)getQk:(BlueSTSDKFeatureSample*)sample;
 
 /**
- *  extract the w quaternion component
+ *  extract the status value
  *
  *  @param sample data read from the node
  *
- *  @return w quaternion component
+ *  @return status value
  */
-//+(float)getQs:(BlueSTSDKFeatureSample*)sample;
++(float)getStatus:(BlueSTSDKFeatureSample *)sample;
 
 
++(NSString*)getAccelerationUnit;
 
++(NSString*)getGyroscopeUnit;
+
++(NSString*)getMagnetometerlUnit;
+
++(NSString*)getSensorFusionUnit;
 
 @end
