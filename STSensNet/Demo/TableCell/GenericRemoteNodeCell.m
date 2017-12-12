@@ -84,11 +84,10 @@ static NSString *sMicLevelUnit;
 }
 
 - (IBAction)cubeOn:(UIButton *)sender {
+    if ([_idDelegate respondsToSelector:@selector(notifyRemoteCellId:)]) {
+        [_idDelegate notifyRemoteCellId:self.nodeId];
+    }
 }
-
-
-
-
 
 
 - (IBAction)changeProximityNotificationStatus:(UISwitch *)sender {

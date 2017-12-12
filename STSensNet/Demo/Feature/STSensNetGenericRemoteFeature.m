@@ -45,6 +45,7 @@
 
 ///// type id used for undesteand what value read next
 
+#define TYPE_ID_UNKWOWN 0x00
 #define TYPE_ID_PRESSURE 0x01
 #define TYPE_ID_HUMIDITY 0x02
 #define TYPE_ID_TEMPERATURE 0x03
@@ -165,12 +166,6 @@
 #define SENSOR_FUSION_DATA_MAX 1.0f
 #define SENSOR_FUSION_DATA_MIN -SENSOR_FUSION_DATA_MAX
 
-#define UNKNOWN_STATUS_INDEX 22
-#define UNKNOWN_STATUS_UNIT nil
-#define UNKNOWN_STATUS_DATA_NAME @"Unknown"
-#define UNKNOWN_STATUS_DATA_MAX 1024
-#define UNKNOWN_STATUS_DATA_MIN 0
-
 /**
  * @memberof STSensNetGenericRemoteFeature
  *  array with the description of field exported by the feature
@@ -244,91 +239,85 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                        // Acceleration
                        [BlueSTSDKFeatureField  createWithName:ACCELERATION_X_DATA_NAME
                                                          unit:ACCELERATION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@ACCELERATION_DATA_MIN
                                                           max:@ACCELERATION_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:ACCELERATION_Y_DATA_NAME
                                                          unit:ACCELERATION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@ACCELERATION_DATA_MIN
                                                           max:@ACCELERATION_DATA_MAX],
 
                        [BlueSTSDKFeatureField  createWithName:ACCELERATION_Z_DATA_NAME
                                                          unit:ACCELERATION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@ACCELERATION_DATA_MIN
                                                           max:@ACCELERATION_DATA_MAX],
                        // Gyroscope
                        [BlueSTSDKFeatureField  createWithName:GYROSCOPE_X_DATA_NAME
                                                          unit:GYROSCOPE_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@GYROSCOPE_DATA_MIN
                                                           max:@GYROSCOPE_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:GYROSCOPE_Y_DATA_NAME
                                                          unit:GYROSCOPE_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@GYROSCOPE_DATA_MIN
                                                           max:@GYROSCOPE_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:GYROSCOPE_Z_DATA_NAME
                                                          unit:GYROSCOPE_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@GYROSCOPE_DATA_MIN
                                                           max:@GYROSCOPE_DATA_MAX],
                        
                        // Magnetometer
                        [BlueSTSDKFeatureField  createWithName:MAGNETOMETER_X_DATA_NAME
                                                          unit:MAGNETOMETER_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@MAGNETOMETER_DATA_MIN
                                                           max:@MAGNETOMETER_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:MAGNETOMETER_Y_DATA_NAME
                                                          unit:MAGNETOMETER_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@MAGNETOMETER_DATA_MIN
                                                           max:@MAGNETOMETER_DATA_MAX],
 
                        [BlueSTSDKFeatureField  createWithName:MAGNETOMETER_Z_DATA_NAME
                                                          unit:MAGNETOMETER_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
                                                           min:@MAGNETOMETER_DATA_MIN
                                                           max:@MAGNETOMETER_DATA_MAX],
                        
                        // Status
-//                       [BlueSTSDKFeatureField  createWithName:STATUS_DATA_NAME
-//                                                         unit:STATUS_UNIT
-//                                                         type:BlueSTSDKFeatureFieldTypeUInt16
-//                                                          min:@STATUS_DATA_MIN
-//                                                          max:@STATUS_DATA_MAX],
+                       [BlueSTSDKFeatureField  createWithName:STATUS_DATA_NAME
+                                                         unit:STATUS_UNIT
+                                                         type:BlueSTSDKFeatureFieldTypeInt16
+                                                          min:@STATUS_DATA_MIN
+                                                          max:@STATUS_DATA_MAX],
                        
                        // Sensor Fusion
                        [BlueSTSDKFeatureField  createWithName:SENSOR_FUSION_QI_DATA_NAME
                                                          unit:SENSOR_FUSION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@SENSOR_FUSION_DATA_MIN
                                                           max:@SENSOR_FUSION_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:SENSOR_FUSION_QJ_DATA_NAME
                                                          unit:SENSOR_FUSION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@SENSOR_FUSION_DATA_MIN
                                                           max:@SENSOR_FUSION_DATA_MAX],
                        
                        [BlueSTSDKFeatureField  createWithName:SENSOR_FUSION_QK_DATA_NAME
                                                          unit:SENSOR_FUSION_UNIT
-                                                         type:BlueSTSDKFeatureFieldTypeUInt16
+                                                         type:BlueSTSDKFeatureFieldTypeFloat
                                                           min:@SENSOR_FUSION_DATA_MIN
-                                                          max:@SENSOR_FUSION_DATA_MAX],
-                       
-                       // Unknown Ftatus
-//                       [BlueSTSDKFeatureField  createWithName:UNKNOWN_STATUS_DATA_NAME
-//                                                         unit:UNKNOWN_STATUS_UNIT
-//                                                         type:BlueSTSDKFeatureFieldTypeUInt16
-//                                                          min:@UNKNOWN_STATUS_DATA_MIN
-//                                                          max:@UNKNOWN_STATUS_DATA_MAX],
+                                                          max:@SENSOR_FUSION_DATA_MAX]
+
                        ];
     }//if
 }//initialize
@@ -382,11 +371,10 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     int magnetometerX=-2001;
     int magnetometerY=-2001;
     int magnetometerZ=-2001;
-//    int status=0;
+    int status=0;
     float sFusionQI=NAN;
     float sFusionQJ=NAN;
     float sFusionQK=NAN;
-//    NSArray * unknownData = [NSArray arrayWithObjects:nil];
     
     
     
@@ -441,12 +429,13 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_GYROSCOPE:
-                gyroscopeX = [rawData extractLeUInt16FromOffset:(readData+1)/10.0f];
+                gyroscopeX = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
-                gyroscopeY = [rawData extractLeUInt16FromOffset:(readData+1)/10.0f];
+                gyroscopeY = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
-                gyroscopeZ = [rawData extractLeUInt16FromOffset:(readData+1)/10.0f];
+                gyroscopeZ = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
+                break;
                 
             case TYPE_ID_MAGNETOMETER:
                 magnetometerX = [rawData extractLeUInt16FromOffset:readData+1];
@@ -455,20 +444,31 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 readData+=2;
                 magnetometerZ = [rawData extractLeUInt16FromOffset:readData+1];
                 readData+=2;
+                break;
+                
+            case TYPE_ID_STATUS:
+                status=1;
+                readData+=1;
+                break;
                 
             case TYPE_ID_SENSORFUSION:
-                sFusionQI = [rawData extractLeUInt16FromOffset:(readData+1)/10000.0f];
+                NSLog(@"TYPE_ID_SENSORFUSION -- ROW 452");//DEBUG
+                sFusionQI = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
                 readData+=2;
-                sFusionQJ = [rawData extractLeUInt16FromOffset:(readData+1)/10000.0f];
+                sFusionQJ = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
                 readData+=2;
-                sFusionQK = [rawData extractLeUInt16FromOffset:(readData+1)/10000.0f];
+                sFusionQK = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
                 readData+=2;
+                break;
                 
             default://else
+                NSLog(@"Unknown data -- ROW 461");//DEBUG
                 validDataId=false;
+                break;
         }
         readData++; //+1 for the typeid
     }
+    
     
     NSArray *data = @[@(nodeID),@(pressure),@(temperature),
                       @(humidity),@(ledStatus),@(proximity),
@@ -476,7 +476,9 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                       @(accelerationX),@(accelerationY), @(accelerationZ),
                       @(gyroscopeX),@(gyroscopeY),@(gyroscopeZ),
                       @(magnetometerX),@(magnetometerY),@(magnetometerZ),
+                      @(status),
                       @(sFusionQI),@(sFusionQJ),@(sFusionQK)];
+    
     
     BlueSTSDKFeatureSample *sample =
     [BlueSTSDKFeatureSample sampleWithTimestamp:timestamp data:data ];
@@ -601,6 +603,10 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     return [[sample.data objectAtIndex:ACCELERATION_Z_INDEX] floatValue];
 }
 
++(NSString*)getAccelerationUnit{
+    return ACCELERATION_UNIT;
+}
+
 /*---------------------------------------------------------------------------------*/
 
 +(float)getMagX:(BlueSTSDKFeatureSample *)sample{
@@ -619,6 +625,10 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     if (sample.data.count<MAGNETOMETER_Z_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:MAGNETOMETER_Z_INDEX] floatValue];
+}
+
++(NSString*)getMagnetometerlUnit{
+    return MAGNETOMETER_UNIT;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -641,9 +651,23 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     return [[sample.data objectAtIndex:GYROSCOPE_Z_INDEX] floatValue];
 }
 
++(NSString*)getGyroscopeUnit{
+    return GYROSCOPE_UNIT;
+}
+
+/*---------------------------------------------------------------------------------*/
+
++(float)getStatus:(BlueSTSDKFeatureSample *)sample{
+    if (sample.data.count<STATUS_INDEX) {
+        return -1;
+    }
+    return [[sample.data objectAtIndex:STATUS_INDEX] intValue];
+}
+
 /*---------------------------------------------------------------------------------*/
 
 +(float)getQi:(BlueSTSDKFeatureSample*)sample{
+    NSLog(@"getQi -- ROW 665");//DEBUG
     if(sample.data.count<SENSOR_FUSION_QI_INDEX)
         return NAN;
     return[[sample.data objectAtIndex:SENSOR_FUSION_QI_INDEX] floatValue];
@@ -663,18 +687,16 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     return[[sample.data objectAtIndex:SENSOR_FUSION_QK_INDEX] floatValue];
 }
 
++(NSString*)getSensorFusionUnit{
+    return SENSOR_FUSION_UNIT;
+}
 
-//+(float)getQs:(BlueSTSDKFeatureSample*)sample{
-//    if(sample.data.count<3)
-//        return NAN;
-//    return[sample.data[3] floatValue];
-//}
 
 /*---------------------------------------------------------------------------------*/
 
-
--(void)sendEnableCommand:(uint8_t)commandId nodeId:(uint16_t)nodeId
-                  enable:(bool)enable{
+-(void)sendEnableCommand:(uint8_t)commandId nodeId:(uint16_t)nodeId enable:(bool)enable{
+    
+    NSLog(@"sendEnableCommand -- ROW 694");//DEBUG
     NSMutableData *msg = [NSMutableData data];
     nodeId = CFSwapInt16HostToBig(nodeId);
     uint8_t newStatus = enable ? 0x1 : 0x0;
@@ -683,6 +705,8 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     [msg appendBytes:&newStatus length:sizeof(newStatus)];
     [self writeData:msg];
 }
+
+/*---------------------------------------------------------------------------------*/
 
 -(void)setSwitchStatus:(uint16_t)nodeId newState:(bool)state{
     [self sendEnableCommand:TYPE_ID_LED_STATUS nodeId:nodeId enable:state];
@@ -698,19 +722,22 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 
 /*---------------------------------------------------------------------------------*/
 // Added
--(void)enableSensorFusion:(uint16_t)nodeId enabled:(bool)state{
+
+-(void)enableSensorFusionForNode:(uint16_t)nodeId enabled:(bool)state{
+    NSLog(@"enableSensorFusionForNode %u -- ROW 732",nodeId);//DEBUG
+    
     [self sendEnableCommand:TYPE_ID_SENSORFUSION nodeId:nodeId enable:state];
 }
 
--(void)enableAcceleration:(uint16_t)nodeId enabled:(bool)state{
+-(void)enableAccelerationForNode:(uint16_t)nodeId enabled:(bool)state{
     [self sendEnableCommand:TYPE_ID_ACCELERATION nodeId:nodeId enable:state];
 }
 
--(void)enableGyroscope:(uint16_t)nodeId enabled:(bool)state{
+-(void)enableGyroscopeForNode:(uint16_t)nodeId enabled:(bool)state{
     [self sendEnableCommand:TYPE_ID_GYROSCOPE nodeId:nodeId enable:state];
 }
 
--(void)enableMagnetometer:(uint16_t)nodeId enabled:(bool)state{
+-(void)enableMagnetometerForNode:(uint16_t)nodeId enabled:(bool)state{
     [self sendEnableCommand:TYPE_ID_MAGNETOMETER nodeId:nodeId enable:state];
 }
 

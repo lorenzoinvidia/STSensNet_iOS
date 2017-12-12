@@ -74,13 +74,13 @@
 
 @interface GenericRemoteNodeTableViewController ()<UITableViewDataSource,UITableViewDelegate,
     BlueSTSDKFeatureDelegate, EnviromentalRemoteNodeCellChanges,
-    GenericRemoteNodeCellChanges,STSensNetCommandFeatureCallback>
+    GenericRemoteNodeCellChanges,STSensNetCommandFeatureCallback,
+    GenericRemoteNodeCellId>
 
    /**
     *  table where show the remote nodes
     */
     @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
 
@@ -129,6 +129,10 @@
      */
     int32_t mLastEnabledMic;
     
+    /**
+     * the selected node id from GenericRemoteNodeCell
+     */
+    uint16_t selectedRemoteNodeId;
 }
 
 /**
@@ -195,10 +199,11 @@
 }
 
 /**
- *  set the set the control view as table source data
+ *  set the control view as table source data
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     mRemoteNodes = [NSMutableArray array];
     self.tableView.dataSource=self;
     self.tableView.delegate=self;
@@ -261,7 +266,7 @@
 }
 
 /**
- *  switch the segues and pass to the next VC the parameters
+ *  switch the segues and pass the parameters to the next VC
  */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UIButton *)sender {
@@ -279,14 +284,24 @@
         plotFeatureViewController.featureLabelText = MAG_LABEL;
         
     } else if ([segue.identifier  isEqualToString: CUBE_SEGUE]) {
+        NSLog(@"cube segue");
         sensorFusionViewController.featureLabelText = SFUSION_LABEL;
-        sensorFusionViewController.activeNode = self.node; //seems ok !!
-
+       
+        sensorFusionViewController.activeNode = self.node;
+        sensorFusionViewController.nodeId = selectedRemoteNodeId;
+        
     } else {
-        NSLog(@"Different segue ::: ROW257"); //DEBUG
+        NSLog(@"Different segue --- ROW257"); //DEBUG
     }
 }
 
+
+#pragma mark - GenericRemoteNodeCellId
+
+-(void)notifyRemoteCellId:(uint16_t)nodeId{
+    NSLog(@"node id: %@",[NSString stringWithFormat:@"0x%0.4X",nodeId]);
+    selectedRemoteNodeId = nodeId;
+}
 
 
 
@@ -320,7 +335,7 @@
     cell.envDelegate=self;
     cell.genericDelegate=self;
     [cell updateContent:data];
-//    [cell showMemsView];
+    cell.idDelegate = self;
     return cell;
 }
 
@@ -342,7 +357,7 @@
  *  @param sample  new data sample
  */
 - (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
-
+    
     uint16_t nodeId =[STSensNetGenericRemoteFeature getNodeId:sample];
     
     //update the remote data struct
@@ -429,6 +444,8 @@
         mLastEnabledMic=-1;
     }
 }
+
+
 
 
 /**

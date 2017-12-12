@@ -85,7 +85,12 @@
 @property (readwrite,nonatomic, assign) int accelerationX;
 @property (readwrite,nonatomic, assign) int accelerationY;
 @property (readwrite,nonatomic, assign) int accelerationZ;
+
+/**
+ * true if the acceleration notification are enabled
+ */
 @property (readwrite, assign) BOOL isAccelerationEnabled;
+
 
 /**
  * gyroscope
@@ -93,7 +98,12 @@
 @property (readwrite,nonatomic, assign) float gyroscopeX;
 @property (readwrite,nonatomic, assign) float gyroscopeY;
 @property (readwrite,nonatomic, assign) float gyroscopeZ;
+
+/**
+ * true if the gyroscope notification are enabled
+ */
 @property (readwrite, assign) BOOL isGyroscopeEnabled;
+
 
 /**
  * magnetometer
@@ -101,7 +111,12 @@
 @property (readwrite,nonatomic, assign) int magnetometerX;
 @property (readwrite,nonatomic, assign) int magnetometerY;
 @property (readwrite,nonatomic, assign) int magnetometerZ;
+
+/**
+ * true if the magnetometer notification are enabled
+ */
 @property (readwrite, assign) BOOL isMagnetometerEnabled;
+
 
 /**
  * sensor fusion
@@ -109,7 +124,16 @@
 @property (readwrite,nonatomic, assign) float sFusionQI;
 @property (readwrite,nonatomic, assign) float sFusionQJ;
 @property (readwrite,nonatomic, assign) float sFusionQK;
+
+/**
+ * true if the sensor fusion notification are enabled
+ */
 @property (readwrite, assign) BOOL isSensorFusionEnabled;
+
+
+/**
+ * status
+ */
 
 
 @end
