@@ -420,39 +420,43 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_ACCELERATION:
-                accelerationX = [rawData extractLeUInt16FromOffset:readData+1];
+                NSLog(@"TYPE_ID_ACCELERATION --");//DEBUG
+                accelerationX = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
-                accelerationY = [rawData extractLeUInt16FromOffset:readData+1];
+                accelerationY = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
-                accelerationZ = [rawData extractLeUInt16FromOffset:readData+1];
+                accelerationZ = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
                 break;
                 
             case TYPE_ID_GYROSCOPE:
-                gyroscopeX = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
+                NSLog(@"TYPE_ID_GYROSCOPE --");//DEBUG
+                gyroscopeX = [rawData extractLeInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
-                gyroscopeY = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
+                gyroscopeY = [rawData extractLeInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
-                gyroscopeZ = [rawData extractLeUInt16FromOffset:(readData+1)]/10.0f;
+                gyroscopeZ = [rawData extractLeInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
                 break;
                 
             case TYPE_ID_MAGNETOMETER:
-                magnetometerX = [rawData extractLeUInt16FromOffset:readData+1];
+                NSLog(@"TYPE_ID_MAGNETOMETER --");//DEBUG
+                magnetometerX = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
-                magnetometerY = [rawData extractLeUInt16FromOffset:readData+1];
+                magnetometerY = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
-                magnetometerZ = [rawData extractLeUInt16FromOffset:readData+1];
+                magnetometerZ = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
                 break;
                 
             case TYPE_ID_STATUS:
+                NSLog(@"TYPE_ID_STATUS --");//DEBUG
                 status=1;
                 readData+=1;
                 break;
                 
             case TYPE_ID_SENSORFUSION:
-                NSLog(@"TYPE_ID_SENSORFUSION -- ROW 452");//DEBUG
+                NSLog(@"TYPE_ID_SENSORFUSION --");//DEBUG
                 sFusionQI = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
                 readData+=2;
                 sFusionQJ = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
@@ -462,7 +466,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             default://else
-                NSLog(@"Unknown data -- ROW 461");//DEBUG
+                NSLog(@"UNKWNON DATA --");//DEBUG
                 validDataId=false;
                 break;
         }
@@ -724,20 +728,26 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 // Added
 
 -(void)enableSensorFusionForNode:(uint16_t)nodeId enabled:(bool)state{
-    NSLog(@"enableSensorFusionForNode %u -- ROW 732",nodeId);//DEBUG
+    NSLog(@"enableSensorFusionForNode %u -- ROW 727",nodeId);//DEBUG
     
     [self sendEnableCommand:TYPE_ID_SENSORFUSION nodeId:nodeId enable:state];
 }
 
 -(void)enableAccelerationForNode:(uint16_t)nodeId enabled:(bool)state{
+     NSLog(@"enableAccelerationForNode %u -- ROW 733",nodeId);//DEBUG
+    
     [self sendEnableCommand:TYPE_ID_ACCELERATION nodeId:nodeId enable:state];
 }
 
 -(void)enableGyroscopeForNode:(uint16_t)nodeId enabled:(bool)state{
+    NSLog(@"enableGyroscopeForNode %u -- ROW 739",nodeId);//DEBUG
+    
     [self sendEnableCommand:TYPE_ID_GYROSCOPE nodeId:nodeId enable:state];
 }
 
 -(void)enableMagnetometerForNode:(uint16_t)nodeId enabled:(bool)state{
+    NSLog(@"enableMagnetometerForNode %u -- ROW 745",nodeId);//DEBUG
+    
     [self sendEnableCommand:TYPE_ID_MAGNETOMETER nodeId:nodeId enable:state];
 }
 
