@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="528"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mEb-Qi-5y9" id="pcv-Ba-5r2">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="527.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Hum" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pU-7k-ZUa">
@@ -407,8 +407,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LD2-da-keE">
-                                <rect key="frame" x="32" y="64" width="311" height="595"/>
+                                <rect key="frame" x="32" y="64" width="311" height="550"/>
                             </sceneKitView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CsY-Ex-cl8">
+                                <rect key="frame" x="152" y="622" width="70" height="33"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="resetPositionAction:" destination="Y3Y-Wh-1Zc" eventType="touchUpInside" id="9LJ-Jt-nBC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -417,9 +425,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="YLz-18-Rcz" secondAttribute="trailing" constant="8" id="N0C-YV-vxN"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="8" id="PP8-gK-5Ae"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LD2-da-keE" secondAttribute="trailing" constant="16" id="Py6-ad-CaD"/>
-                            <constraint firstItem="s8c-ru-paE" firstAttribute="top" secondItem="LD2-da-keE" secondAttribute="bottom" constant="8" id="QUA-Kx-onN"/>
+                            <constraint firstItem="s8c-ru-paE" firstAttribute="top" secondItem="LD2-da-keE" secondAttribute="bottom" constant="53" id="QUA-Kx-onN"/>
+                            <constraint firstItem="CsY-Ex-cl8" firstAttribute="top" secondItem="LD2-da-keE" secondAttribute="bottom" constant="8" id="aY6-wT-SlU"/>
+                            <constraint firstItem="CsY-Ex-cl8" firstAttribute="centerX" secondItem="WQL-wZ-ijM" secondAttribute="centerX" id="e69-Gq-XKW"/>
                             <constraint firstItem="YLz-18-Rcz" firstAttribute="top" secondItem="G9l-g2-JQz" secondAttribute="bottom" constant="16" id="eyI-0y-B5V"/>
                             <constraint firstItem="LD2-da-keE" firstAttribute="top" secondItem="YLz-18-Rcz" secondAttribute="bottom" constant="6.5" id="lVb-Ql-2bv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CsY-Ex-cl8" secondAttribute="trailing" constant="137" id="tVu-F8-Av9"/>
+                            <constraint firstItem="CsY-Ex-cl8" firstAttribute="leading" secondItem="WQL-wZ-ijM" secondAttribute="leadingMargin" constant="136" id="x51-cs-qZk"/>
                         </constraints>
                     </view>
                     <connections>
@@ -429,7 +441,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zHY-40-Idl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="185" y="935"/>
+            <point key="canvasLocation" x="184.80000000000001" y="934.18290854572717"/>
         </scene>
     </scenes>
     <resources>
