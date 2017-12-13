@@ -213,9 +213,6 @@ SCNNode *mObjectNode;
         dispatch_async(dispatch_get_main_queue(),^{
             mObjectNode.orientation = rot;
         });
-    
-    
-    
 }
 
 /**
@@ -232,5 +229,20 @@ SCNNode *mObjectNode;
         [mRemoteFeature enableSensorFusionForNode:nodeId enabled:false];
     }
 }
+
+
+/**
+ * function called when the user press the reset button
+ */
+- (IBAction)resetPositionAction:(UIButton *)sender {
+    BlueSTSDKFeatureSample * data = mRemoteFeature.lastSample;
+    mQuatReset.z = -[STSensNetGenericRemoteFeature getQi:data];
+    mQuatReset.y = -[STSensNetGenericRemoteFeature getQj:data];
+    mQuatReset.x = [STSensNetGenericRemoteFeature getQk:data];
+    mQuatReset.w = sqrt(1-((mQuatReset.x*mQuatReset.x)+(mQuatReset.y*mQuatReset.y)+(mQuatReset.z*mQuatReset.z)));
+    mQuatReset = GLKQuaternionInvert(mQuatReset);
+}
+
+
 
 @end

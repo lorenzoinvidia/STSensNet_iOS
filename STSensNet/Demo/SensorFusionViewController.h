@@ -68,4 +68,10 @@
 
 @property (weak, nonatomic) IBOutlet SCNView *sceneView;
 
+
+- (IBAction)resetPositionAction:(UIButton *)sender;
+
+
+
+
 @end
