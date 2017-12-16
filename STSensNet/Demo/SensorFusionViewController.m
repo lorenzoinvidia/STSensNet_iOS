@@ -82,14 +82,14 @@ SCNNode *mObjectNode;
 
 
 - (void) viewDidAppear:(BOOL)animated {
-    NSLog(@"viewDidAppear");//DEBUG
+//    NSLog(@"viewDidAppear");//DEBUG
     [super viewDidAppear:animated];
     
     mRemoteFeature =(STSensNetGenericRemoteFeature*)
     [self.activeNode getFeatureOfType:STSensNetGenericRemoteFeature.class];
+    
     if (mRemoteFeature!=nil){
-        
-        NSLog(@"(mRemoteFeature!=nil -- ROW 68");//DEBUG
+//        NSLog(@"(mRemoteFeature!=nil");//DEBUG
         
         [mRemoteFeature addFeatureDelegate:self];
         [self.activeNode enableNotification:mRemoteFeature];
@@ -100,7 +100,7 @@ SCNNode *mObjectNode;
 
 
 - (void) viewWillDisappear:(BOOL)animated {
-    NSLog(@"viewWillDisappear");//DEBUG
+//    NSLog(@"viewWillDisappear");//DEBUG
     [super viewWillDisappear:animated];
     
     if(mRemoteFeature!=nil) {
@@ -112,7 +112,7 @@ SCNNode *mObjectNode;
 
 
 - (void)sceneViewSetup{
-    NSLog(@"sceneViewSetup");//DEBUG
+//    NSLog(@"sceneViewSetup");//DEBUG
 
     mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
     mObjectNode = [mScene.rootNode childNodeWithName:SCENE_MODEL_NAME recursively:YES];
@@ -133,7 +133,7 @@ SCNNode *mObjectNode;
  */
 -(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
     
-    NSLog(@"getNodeData ROW 105");//DEBUG
+//    NSLog(@"getNodeData");//DEBUG
     
     @synchronized (mRemoteNodes) {
         for(unsigned long i=0;i<mRemoteNodes.count;i++){
@@ -149,7 +149,7 @@ SCNNode *mObjectNode;
         
         [mRemoteNodes addObject:data];
         
-        NSLog(@"mRemoteNodes with %lu elements", (unsigned long)mRemoteNodes.count);//DEBUG
+//        NSLog(@"mRemoteNodes with %lu elements", (unsigned long)mRemoteNodes.count);//DEBUG
         return data;
     }
     
@@ -164,35 +164,13 @@ SCNNode *mObjectNode;
  *  @param sample  new data sample
  */
 - (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
-   
-    NSLog(@"didUpdateFeature ROW 134");
+//    NSLog(@"didUpdateFeature");
 
     uint16_t nodeId = [STSensNetGenericRemoteFeature getNodeId:sample];
-    
-    NSLog(@"didUF node id: %u", nodeId);
+//    NSLog(@"didUF node id: %u", nodeId);
     
     //update the remote data struct
     GenericRemoteNodeData *data = [self getNodeData:nodeId];
-//    data.temperature = [STSensNetGenericRemoteFeature getTemperature:sample];
-//    data.pressure = [STSensNetGenericRemoteFeature getPressure:sample];
-//    data.humidity = [STSensNetGenericRemoteFeature getHumidity:sample];
-//    data.ledStatus = [STSensNetGenericRemoteFeature getLedStatus:sample];
-//    data.lastMotionEvent = [STSensNetGenericRemoteFeature getLastMovimentDetected:sample];
-//    data.proximity = [STSensNetGenericRemoteFeature getProximity:sample];
-//    data.micLevel = [STSensNetGenericRemoteFeature getMicLevel:sample];
-//    data.luminosity = [STSensNetGenericRemoteFeature getLuminosity:sample];
-//
-//    data.accelerationX = [STSensNetGenericRemoteFeature getAccX:sample];
-//    data.accelerationY = [STSensNetGenericRemoteFeature getAccY:sample];
-//    data.accelerationZ = [STSensNetGenericRemoteFeature getAccZ:sample];
-//
-//    data.gyroscopeX = [STSensNetGenericRemoteFeature getGyroX:sample];
-//    data.gyroscopeY = [STSensNetGenericRemoteFeature getGyroY:sample];
-//    data.gyroscopeZ = [STSensNetGenericRemoteFeature getGyroZ:sample];
-//
-//    data.magnetometerX = [STSensNetGenericRemoteFeature getMagX:sample];
-//    data.magnetometerY = [STSensNetGenericRemoteFeature getMagY:sample];
-//    data.magnetometerZ = [STSensNetGenericRemoteFeature getMagZ:sample];
     
     data.sFusionQI = [STSensNetGenericRemoteFeature getQi:sample];
     data.sFusionQJ = [STSensNetGenericRemoteFeature getQj:sample];
@@ -200,7 +178,7 @@ SCNNode *mObjectNode;
     
         GLKQuaternion temp;
         temp.z = -data.sFusionQI;
-        temp.y = -data.sFusionQJ;
+        temp.y = data.sFusionQJ;
         temp.x = data.sFusionQK;
         temp.w = sqrt(1-((temp.x*temp.x)+(temp.y*temp.y)+(temp.z*temp.z)));
         

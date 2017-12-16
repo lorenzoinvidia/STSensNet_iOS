@@ -275,23 +275,38 @@
     
     
     if ([segue.identifier  isEqualToString: ACC_SEGUE]) {
+        NSLog(@"%@ segue", ACC_SEGUE);//DEBUG
+        
         plotFeatureViewController.featureLabelText = ACC_LABEL;
+        sensorFusionViewController.activeNode = self.node;
+        sensorFusionViewController.nodeId = selectedRemoteNodeId;
     
+        
     } else if ([segue.identifier  isEqualToString: GYRO_SEGUE]) {
+        NSLog(@"%@ segue", GYRO_SEGUE);//DEBUG
+        
         plotFeatureViewController.featureLabelText = GYRO_LABEL;
-    
+        sensorFusionViewController.activeNode = self.node;
+        sensorFusionViewController.nodeId = selectedRemoteNodeId;
+        
+        
     } else if ([segue.identifier  isEqualToString: MAG_SEGUE]) {
+        NSLog(@"%@ segue", MAG_SEGUE);//DEBUG
+        
         plotFeatureViewController.featureLabelText = MAG_LABEL;
+        sensorFusionViewController.activeNode = self.node;
+        sensorFusionViewController.nodeId = selectedRemoteNodeId;
+        
         
     } else if ([segue.identifier  isEqualToString: CUBE_SEGUE]) {
-        NSLog(@"cube segue");
+        NSLog(@"%@ segue", CUBE_SEGUE);//DEBUG
+
         sensorFusionViewController.featureLabelText = SFUSION_LABEL;
-       
         sensorFusionViewController.activeNode = self.node;
         sensorFusionViewController.nodeId = selectedRemoteNodeId;
         
     } else {
-        NSLog(@"Different segue --- ROW257"); //DEBUG
+        NSLog(@"Different segue");//DEBUG
     }
 }
 

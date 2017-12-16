@@ -75,12 +75,21 @@ static NSString *sMicLevelUnit;
 */
 
 - (IBAction)accelerometerOn:(UIButton *)sender {
+    if ([_idDelegate respondsToSelector:@selector(notifyRemoteCellId:)]) {
+        [_idDelegate notifyRemoteCellId:self.nodeId];
+    }
 }
 
 - (IBAction)gyroscopeOn:(UIButton *)sender {
+    if ([_idDelegate respondsToSelector:@selector(notifyRemoteCellId:)]) {
+        [_idDelegate notifyRemoteCellId:self.nodeId];
+    }
 }
 
 - (IBAction)magnetometerOn:(UIButton *)sender {
+    if ([_idDelegate respondsToSelector:@selector(notifyRemoteCellId:)]) {
+        [_idDelegate notifyRemoteCellId:self.nodeId];
+    }
 }
 
 - (IBAction)cubeOn:(UIButton *)sender {

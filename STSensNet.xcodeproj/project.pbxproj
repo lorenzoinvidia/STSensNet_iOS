@@ -31,6 +31,7 @@
 		665E59C61DDAEA9600FAD172 /* GenericRemoteNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665E59C51DDAEA9600FAD172 /* GenericRemoteNodeCell.m */; };
 		66FD405A1E9CDD3400711F26 /* st_images_LanchScreen.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */; };
 		66FD405C1E9CDEE100711F26 /* st_images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66FD405B1E9CDEE100711F26 /* st_images.xcassets */; };
+		E134C443D0968F87B1FF1906 /* libPods-STSensNet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC1CDCB894348777F966B603 /* libPods-STSensNet.a */; };
 		ED7318EE1FCAEE1800C0F49A /* PlotFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */; };
 		ED9BC48C1FD5E26A00A32041 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9BC48A1FD5E26A00A32041 /* art.scnassets */; };
 		EDBDBEE71FD5BA910080977B /* SensorFusionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */; };
@@ -142,11 +143,14 @@
 		665E59C51DDAEA9600FAD172 /* GenericRemoteNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericRemoteNodeCell.m; sourceTree = "<group>"; };
 		66FD40591E9CDD3400711F26 /* st_images_LanchScreen.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = st_images_LanchScreen.xcassets; path = BlueSTSDK_Gui/BlueSTSDK_Gui/st_images_LanchScreen.xcassets; sourceTree = "<group>"; };
 		66FD405B1E9CDEE100711F26 /* st_images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = st_images.xcassets; sourceTree = "<group>"; };
+		D1EA6E1B2B2471D39CFD3EB6 /* Pods-STSensNet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSensNet.release.xcconfig"; path = "Pods/Target Support Files/Pods-STSensNet/Pods-STSensNet.release.xcconfig"; sourceTree = "<group>"; };
 		ED7318EC1FCAEE1800C0F49A /* PlotFeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PlotFeatureViewController.h; path = Demo/PlotFeatureViewController.h; sourceTree = "<group>"; };
 		ED7318ED1FCAEE1800C0F49A /* PlotFeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PlotFeatureViewController.m; path = Demo/PlotFeatureViewController.m; sourceTree = "<group>"; };
 		ED9BC48A1FD5E26A00A32041 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		EDBDBEE51FD5BA900080977B /* SensorFusionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SensorFusionViewController.h; path = Demo/SensorFusionViewController.h; sourceTree = "<group>"; };
 		EDBDBEE61FD5BA900080977B /* SensorFusionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SensorFusionViewController.m; path = Demo/SensorFusionViewController.m; sourceTree = "<group>"; };
+		F4EA4A17F74F918ED02A22FE /* Pods-STSensNet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STSensNet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STSensNet/Pods-STSensNet.debug.xcconfig"; sourceTree = "<group>"; };
+		FC1CDCB894348777F966B603 /* libPods-STSensNet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-STSensNet.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 			files = (
 				664E09771E49FE0E00C6EA07 /* BlueSTSDK_Gui.framework in Frameworks */,
 				6611A19E1CAA7C6900476E8B /* BlueSTSDK.framework in Frameworks */,
+				E134C443D0968F87B1FF1906 /* libPods-STSensNet.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		477B9D39ED2A60056BAB96D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4EA4A17F74F918ED02A22FE /* Pods-STSensNet.debug.xcconfig */,
+				D1EA6E1B2B2471D39CFD3EB6 /* Pods-STSensNet.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6611A12D1CAA57C500476E8B = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +200,8 @@
 				6611A1521CAA57C500476E8B /* STSensNetTests */,
 				6611A15D1CAA57C500476E8B /* STSensNetUITests */,
 				6611A1371CAA57C500476E8B /* Products */,
+				477B9D39ED2A60056BAB96D9 /* Pods */,
+				ADAAE7F4F2AFF4A3216F0C8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -333,6 +349,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		ADAAE7F4F2AFF4A3216F0C8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC1CDCB894348777F966B603 /* libPods-STSensNet.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -340,10 +364,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6611A1631CAA57C500476E8B /* Build configuration list for PBXNativeTarget "STSensNet" */;
 			buildPhases = (
+				319AA982B364859BC8A0E156 /* [CP] Check Pods Manifest.lock */,
 				6611A1321CAA57C500476E8B /* Sources */,
 				6611A1331CAA57C500476E8B /* Frameworks */,
 				6611A1341CAA57C500476E8B /* Resources */,
 				6611A1A21CAA7C6900476E8B /* Embed Frameworks */,
+				7B7E88D3A9D3E4BCB9FE5433 /* [CP] Embed Pods Frameworks */,
+				BB746E23B684EB6CF677CF81 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -500,6 +527,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		319AA982B364859BC8A0E156 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-STSensNet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B7E88D3A9D3E4BCB9FE5433 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STSensNet/Pods-STSensNet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB746E23B684EB6CF677CF81 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-STSensNet/Pods-STSensNet-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6611A1321CAA57C500476E8B /* Sources */ = {
@@ -663,6 +741,7 @@
 		};
 		6611A1641CAA57C500476E8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4EA4A17F74F918ED02A22FE /* Pods-STSensNet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -677,6 +756,7 @@
 		};
 		6611A1651CAA57C500476E8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1EA6E1B2B2471D39CFD3EB6 /* Pods-STSensNet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
