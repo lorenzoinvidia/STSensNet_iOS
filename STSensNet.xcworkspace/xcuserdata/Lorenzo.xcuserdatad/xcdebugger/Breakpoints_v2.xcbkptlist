@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "STSensNet/Demo/Feature/STSensNetGenericRemoteFeature.m"
-            timestampString = "535057340.594316"
+            timestampString = "535148396.466861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "605"
-            endingLineNumber = "605"
+            startingLineNumber = "599"
+            endingLineNumber = "599"
             landmarkName = "+getAccY:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "STSensNet/Demo/Feature/STSensNetGenericRemoteFeature.m"
-            timestampString = "535057340.594615"
+            timestampString = "535148396.466943"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "612"
-            endingLineNumber = "612"
+            startingLineNumber = "606"
+            endingLineNumber = "606"
             landmarkName = "+getAccZ:"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "STSensNet/Demo/Feature/STSensNetGenericRemoteFeature.m"
-            timestampString = "535112690.390512"
+            timestampString = "535148396.467007"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "592"

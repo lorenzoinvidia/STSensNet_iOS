@@ -101,8 +101,9 @@
     bool mAutomaticRange; // true if we have to automaticaly update the y
     CPTXYGraph *mGraph; //graph where plot the feature
     
-    NSMutableArray *mPlotDataY; //data plotted Y
-    NSMutableArray *mPlotDataX; //data plotted X
+    NSMutableArray * mPlotDataY; //data plotted Y
+    NSMutableArray * mPlotDataX; //data plotted X
+    NSMutableArray * tempY;
 
 }
 
@@ -158,6 +159,7 @@ static NSNumber *sZero;
     mForcePlotUpdateQueue = dispatch_queue_create("ForcePlotUpdateQueue", DISPATCH_QUEUE_SERIAL);
     mSerializePlotUpdateQueue = dispatch_queue_create("SerializePlotUpdateQueue", DISPATCH_QUEUE_SERIAL);
     mLastPlotUpdate = -1;
+    mNForcedUpdate = 0;
 }
 
 
@@ -180,6 +182,13 @@ static NSNumber *sZero;
     if(mRemFeature!=nil){
         NSLog(@"mRemFeature!=nil");//DEBUG
         
+        // startPlotFeature methods
+        mTimestampRangeDecimal = @(-(int32_t) mTimestampRange);
+        mFirstTimeStamp=-1;
+        
+        //update the graph for plot the new feature
+        [self setUpPlotViewForFeature:mRemFeature];
+        
         [mRemFeature addFeatureDelegate:self];
         [self.activeNode enableNotification:mRemFeature];
         
@@ -198,13 +207,6 @@ static NSNumber *sZero;
             NSLog(@"%@", MAG_LABEL);
             [self magnetometerNotificationDidChangeForNodeId:self.nodeId newState:true];
         }
-        
-        // startPlotFeature methods
-        mTimestampRangeDecimal = @(-(int32_t) mTimestampRange);
-        mFirstTimeStamp=-1;
-        
-        //update the graph for plot the new feature
-        [self setUpPlotViewForFeature:mRemFeature];
         
     }
 }
@@ -256,7 +258,7 @@ static NSNumber *sZero;
         
         [mRemNodes addObject:data];
         
-        NSLog(@"mRemNodes with %lu elements", (unsigned long)mRemNodes.count);//DEBUG
+        //NSLog(@"mRemNodes with %lu elements", (unsigned long)mRemNodes.count);//DEBUG
         return data;
     }
     
@@ -264,8 +266,45 @@ static NSNumber *sZero;
 
 
 
+/**
+ *  get a custom sample data from the selected feature
+ *
+ *  @param nodeId nodeId to search
+ *
+ *  @return sample data associated
+ */
+- (NSArray *)getCustomData:(uint16_t)nodeId{
+    int tempX = 0;
+    int tempY = 0;
+    int tempZ = 0;
+    NSArray<NSNumber *> * tempData = [[NSArray alloc] init];
+    
+    if ([self.featureLabelText isEqualToString:ACC_LABEL]) {
+        tempX = [self getNodeData:nodeId].accelerationX;
+        tempY = [self getNodeData:nodeId].accelerationY;
+        tempZ = [self getNodeData:nodeId].accelerationZ;
+    }
+    
+    if ([self.featureLabelText isEqualToString:GYRO_LABEL]) {
+        tempX = [self getNodeData:nodeId].gyroscopeX;
+        tempY = [self getNodeData:nodeId].gyroscopeY;
+        tempZ = [self getNodeData:nodeId].gyroscopeZ;
+    }
+    if ([self.featureLabelText isEqualToString:MAG_LABEL]) {
+        tempX = [self getNodeData:nodeId].magnetometerX;
+        tempY = [self getNodeData:nodeId].magnetometerY;
+        tempZ = [self getNodeData:nodeId].magnetometerZ;
+    }
+    
+    tempData = @[@(tempX), @(tempY), @(tempZ)];
+    
+    return tempData;
+}
+
+
+
 - (void)initPlotView {
-    NSLog(@"initPlotView");//DEBUG
+//    NSLog(@"initPlotView");//DEBUG
     
     self.plotView.allowPinchScaling = false;
     self.plotView.collapsesLayers = true;
@@ -329,7 +368,7 @@ static NSNumber *sZero;
 
 
 - (void)setUpPlotViewForFeature:(BlueSTSDKFeature*)feature {
-    NSLog(@"setUpPlotViewForFeature");//DEBUG
+//    NSLog(@"setUpPlotViewForFeature");//DEBUG
     
     NSUInteger arrCapacity = (NSUInteger) mTimestampRange;
     
@@ -342,6 +381,7 @@ static NSNumber *sZero;
     //reset the plot data
     mPlotDataY = [NSMutableArray arrayWithCapacity:arrCapacity];
     mPlotDataX = [NSMutableArray arrayWithCapacity:arrCapacity];
+    tempY = [NSMutableArray arrayWithCapacity:arrCapacity];
     
     //create a plot for each data exported by the feature
     NSArray *dataDesc = [feature getFieldsDesc];
@@ -353,25 +393,17 @@ static NSNumber *sZero;
     
     //select for feature
     if ([self.featureLabelText isEqualToString:ACC_LABEL]) {
-        NSLog(@"%@", ACC_LABEL);
-        
         SELECTED_FEATURE_INDEX = ACCELERATION_X_INDEX;
     }
-    
     if ([self.featureLabelText isEqualToString:GYRO_LABEL]) {
-        NSLog(@"%@", GYRO_LABEL);
-
         SELECTED_FEATURE_INDEX = GYROSCOPE_X_INDEX;
     }
-    
     if ([self.featureLabelText isEqualToString:MAG_LABEL]) {
-        NSLog(@"%@", MAG_LABEL);
-        
         SELECTED_FEATURE_INDEX = MAGNETOMETER_X_INDEX;
     }
 
     BlueSTSDKFeatureField *field = dataDesc[SELECTED_FEATURE_INDEX];
-    NSLog(@"SELECTED_FEATURE_INDEX: %d", SELECTED_FEATURE_INDEX);//DEBUG
+//    NSLog(@"SELECTED_FEATURE_INDEX: %d", SELECTED_FEATURE_INDEX);//DEBUG
     
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)mGraph.defaultPlotSpace;
     
@@ -455,12 +487,14 @@ static NSNumber *sZero;
 #pragma mark - CPTPlotDataSource methods
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
+//    NSLog(@"numberOfRecordsForPlot %lu", mPlotDataY.count);//DEBUG
+    
     return mPlotDataY.count;
 }
 
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum
-               recordIndex:(NSUInteger)index {
-    //NSLog(@"NumberOfPlot: Index:%d",index);
+-(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index {
+//    NSLog(@"NumberForPlot: Index:%lu andField: %lu",index, fieldEnum);//DEBUG
+    
     NSArray *datas;
     switch (fieldEnum){
         case CPTScatterPlotFieldY:
@@ -478,6 +512,7 @@ static NSNumber *sZero;
  * find the max and min value that we will plot in the graph
  */
 -(void) extractMaxMinFromData:(NSArray*)data min:(float*)outMin max:(float*)outMax{
+//    NSLog(@"extractMaxMinFromData");//DEBUG
     
     float min = FLT_MAX;
     float max = FLT_MIN;
@@ -498,137 +533,141 @@ static NSNumber *sZero;
 
 
 
-//-(void)insertPlotItem:(bool)forceUpdate{
-//    NSLog(@"------------------------------> insertPlotItem");//DEBUG
-//
-//    static bool isPlotting = false;
-//    if (mRemFeature == nil)
-//        return;
-//    if (isPlotting)
-//        return;
-//    isPlotting = true;
-//
-//
-//    BlueSTSDKFeatureSample * sample = mRemFeature.lastSample;
-//    NSString * dataString = nil;
-//    if(forceUpdate) //generate the string only if we have to render it
-//        dataString= [mRemFeature description];
-//
-//    dispatch_async(mSerializePlotUpdateQueue,^{
-//
-//        double currentTime = CACurrentMediaTime();
-//        double diffLastDataUpdate = currentTime-mLastDataUpdate;
-//        if(mFirstTimeStamp<0){
-//            mFirstTimeStamp=sample.timestamp;
-//            mLastTimeStamp=0;
-//        }
-//
-//        if(sample.timestamp<mLastTimeStamp){ // the data are old, avoid to plot it
-//            isPlotting=false;
-//            return;
-//        }
-//
-//        mLastTimeStamp=sample.timestamp;
-//
-//        uint64_t xValue=sample.timestamp;
-//
-//        if(forceUpdate){
-//            mLastDataUpdate=currentTime;
-//            mNForcedUpdate=0;
-//
-//
-//        }else{
-//            // NSLog(@"Force update: %f < %f\n",diffLastDataUpdate,MAX_PLOT_UPDATE_DIFF_MS*0.001);
-//
-//            //the last update is recent -> we can skip this one
-//            if(diffLastDataUpdate< MAX_PLOT_UPDATE_DIFF_MS*0.001){
-//                isPlotting=false;
-//                return;
-//            }else{
-//                //increase the timestamp for duplicate the last received data
-//                xValue += (++mNForcedUpdate)*(MAX_PLOT_UPDATE_DIFF_MS/MS_TO_TIMESTAMP_SCALE);
-//            }//if-else
-//        }//if
-//
-//        //convert from timestamp to time
-//        xValue =(uint32_t)(xValue-mFirstTimeStamp)*MS_TO_TIMESTAMP_SCALE;
-//
-//        //the system clock is faster than the board one, so we run too much -> remove the sample that are in the future
-//        if(((NSNumber*)mPlotDataX.lastObject).unsignedIntValue > xValue){
-//
-//            uint32_t nRemove =0;
-//            while (mPlotDataX.count>0 && ((NSNumber*)mPlotDataX.lastObject).unsignedIntValue > xValue) {
-//                [mPlotDataX removeLastObject];
-//                [mPlotDataY removeLastObject];
-//                nRemove++;
-//            }//while
-//
-//
-//        }//if
-//
-//
-//        NSNumber *lastXValue = @(xValue);
-//
-//        [mPlotDataX addObject:lastXValue];
-//
-//        unsigned int nRemove=0;
-//        // NSLog(@"Oldest: %@ newer:%@",((NSNumber*)mPlotDataX.firstObject),((NSNumber*)mPlotDataX.lastObject));
-//        //        const uint32_t lastTs =(((NSNumber*)mPlotDataX.lastObject).unsignedIntValue);
-//        while(( xValue-
-//               (((NSNumber*) mPlotDataX[nRemove]).unsignedIntValue))
-//              > mTimestampRange ){
-//
-//            nRemove++;
-//        }//while
-//
-////        if(nRemove!=0){
-////            [mPlotDataX removeObjectsInRange:NSMakeRange(0, nRemove)];
-////            [mPlotDataY removeObjectsInRange:NSMakeRange(0, nRemove)];
-////        }
-//
-//        float minY=0,maxY=0;
-//
-//        if(mAutomaticRange){
-//            //update the y range
-//            [self extractMaxMinFromData:mPlotDataY min:&minY max:&maxY];
-//            float delta = maxY-minY;
-//            minY = minY - (delta)*Y_AXIS_BORDER;
-//            maxY = maxY + delta*Y_AXIS_BORDER;
-//        }//if automaticRange
-//
-//        //   if(currentTime-mLastPlotUpdate>0.016) // refresh at 60fps
-//        // if(currentTime-mLastPlotUpdate>0.1) // refresh at 30fps
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            if(mRemFeature==nil){ //plot stop
-//                isPlotting=false;
-//                return;
-//            }//if
-//
-//            mLastPlotUpdate = currentTime;
-//            CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)mGraph.defaultPlotSpace;
-//
-//            plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:lastXValue
-//                                                            length:mTimestampRangeDecimal];
-//
-//            if(mAutomaticRange){
-//                plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:@(minY)
-//                                                                length:@(maxY - minY)];
-//
-//            }//if automaticRange
-//
-//            [mGraph reloadData];
-//
-//        });
-//
-//        isPlotting=false;
-//        dispatch_time_t nextUpdate = dispatch_time(DISPATCH_TIME_NOW, MAX_PLOT_UPDATE_DIFF_MS*1000000L);
-//        dispatch_after(nextUpdate,mForcePlotUpdateQueue, ^{
-//            [self insertPlotItem:false];
-//        });
-//
-//    });
-//
-//}
+-(void)insertPlotItem:(bool)forceUpdate{
+//    NSLog(@"insertPlotItem");//DEBUG
+
+    static bool isPlotting = false;
+    if (mRemFeature == nil)
+        return;
+    if (isPlotting)
+        return;
+    isPlotting = true;
+
+
+    BlueSTSDKFeatureSample * sample = mRemFeature.lastSample;
+    
+    
+    NSString * dataString = nil;
+    if(forceUpdate) //generate the string only if we have to render it
+        dataString= [mRemFeature description];
+
+    dispatch_async(mSerializePlotUpdateQueue,^{
+
+        double currentTime = CACurrentMediaTime();
+        double diffLastDataUpdate = currentTime-mLastDataUpdate;
+        if(mFirstTimeStamp<0){
+            mFirstTimeStamp=sample.timestamp;
+            mLastTimeStamp=0;
+        }
+
+        if(sample.timestamp<mLastTimeStamp){ // the data are old, avoid to plot it
+            isPlotting=false;
+            return;
+        }
+
+        mLastTimeStamp=sample.timestamp;
+
+        uint64_t xValue = sample.timestamp;
+
+        if(forceUpdate){
+            mLastDataUpdate=currentTime;
+            mNForcedUpdate=0;
+
+
+        }else{
+            // NSLog(@"Force update: %f < %f\n",diffLastDataUpdate,MAX_PLOT_UPDATE_DIFF_MS*0.001);
+
+            //the last update is recent -> we can skip this one
+            if(diffLastDataUpdate< MAX_PLOT_UPDATE_DIFF_MS*0.001){
+                isPlotting=false;
+                return;
+            }else{
+                //increase the timestamp for duplicate the last received data
+                xValue += (++mNForcedUpdate)*(MAX_PLOT_UPDATE_DIFF_MS/MS_TO_TIMESTAMP_SCALE);
+            }//if-else
+        }//if
+
+        //convert from timestamp to time
+        xValue =(uint32_t)(xValue-mFirstTimeStamp)*MS_TO_TIMESTAMP_SCALE;
+
+        //the system clock is faster than the board one, so we run too much -> remove the sample that are in the future
+        if(((NSNumber*)mPlotDataX.lastObject).unsignedIntValue > xValue){
+
+            uint32_t nRemove =0;
+            while (mPlotDataX.count>0 && ((NSNumber*)mPlotDataX.lastObject).unsignedIntValue > xValue) {
+                [mPlotDataX removeLastObject];
+                [mPlotDataY removeLastObject];
+                nRemove++;
+            }//while
+
+
+        }//if
+        
+        [mPlotDataY addObject:[self getCustomData:self.nodeId]];
+//        [mPlotDataY addObject:sample.data];
+        
+        NSNumber *lastXValue = @(xValue);
+
+        [mPlotDataX addObject:lastXValue];
+
+        unsigned int nRemove=0;
+        // NSLog(@"Oldest: %@ newer:%@",((NSNumber*)mPlotDataX.firstObject),((NSNumber*)mPlotDataX.lastObject));
+        //        const uint32_t lastTs =(((NSNumber*)mPlotDataX.lastObject).unsignedIntValue);
+        while(( xValue-
+               (((NSNumber*) mPlotDataX[nRemove]).unsignedIntValue))
+              > mTimestampRange ){
+
+            nRemove++;
+        }//while
+
+        if(nRemove!=0){
+            [mPlotDataX removeObjectsInRange:NSMakeRange(0, nRemove)];
+            [mPlotDataY removeObjectsInRange:NSMakeRange(0, nRemove)];
+        }
+
+        float minY=0,maxY=0;
+
+        if(mAutomaticRange){
+            //update the y range
+            [self extractMaxMinFromData:mPlotDataY min:&minY max:&maxY];
+            float delta = maxY-minY;
+            minY = minY - (delta)*Y_AXIS_BORDER;
+            maxY = maxY + delta*Y_AXIS_BORDER;
+        }//if automaticRange
+
+        //   if(currentTime-mLastPlotUpdate>0.016) // refresh at 60fps
+        // if(currentTime-mLastPlotUpdate>0.1) // refresh at 30fps
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            if(mRemFeature==nil){ //plot stop
+                isPlotting=false;
+                return;
+            }//if
+
+            mLastPlotUpdate = currentTime;
+            CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)mGraph.defaultPlotSpace;
+
+            plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:lastXValue
+                                                            length:mTimestampRangeDecimal];
+
+            if(mAutomaticRange){
+                plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:@(minY)
+                                                                length:@(maxY - minY)];
+
+            }//if automaticRange
+
+            [mGraph reloadData];
+
+        });
+
+        isPlotting=false;
+        dispatch_time_t nextUpdate = dispatch_time(DISPATCH_TIME_NOW, MAX_PLOT_UPDATE_DIFF_MS*1000000L);
+        dispatch_after(nextUpdate,mForcePlotUpdateQueue, ^{
+            [self insertPlotItem:false];
+        });
+
+    });
+
+}
 
 
 /**
@@ -681,42 +720,31 @@ static NSNumber *sZero;
 #pragma mark - BlueSTSDKFeatureDelegate methods
 
 - (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
-    NSLog(@"didUpdateFeature");
+//    NSLog(@"didUpdateFeature");//DEBUG
     
     uint16_t nodeId = [STSensNetGenericRemoteFeature getNodeId:sample];
-    NSLog(@"didUF node id: %u", nodeId);
     
     //update the remote data struct
     GenericRemoteNodeData *data = [self getNodeData:nodeId];
-
-    //select for feature
+    
     if ([self.featureLabelText isEqualToString:ACC_LABEL]) {
-        NSLog(@"didUpdateFeatureIF: %@", ACC_LABEL);
-
         data.accelerationX = [STSensNetGenericRemoteFeature getAccX:sample];
         data.accelerationY = [STSensNetGenericRemoteFeature getAccY:sample];
         data.accelerationZ = [STSensNetGenericRemoteFeature getAccZ:sample];
     }
-
     if ([self.featureLabelText isEqualToString:GYRO_LABEL]) {
-        NSLog(@"didUpdateFeatureIF: %@", GYRO_LABEL);
-
         data.gyroscopeX = [STSensNetGenericRemoteFeature getGyroX:sample];
         data.gyroscopeY = [STSensNetGenericRemoteFeature getGyroY:sample];
         data.gyroscopeZ = [STSensNetGenericRemoteFeature getGyroZ:sample];
     }
-
     if ([self.featureLabelText isEqualToString:MAG_LABEL]) {
-        NSLog(@"didUpdateFeatureIF: %@", MAG_LABEL);
-
         data.magnetometerX = [STSensNetGenericRemoteFeature getMagX:sample];
         data.magnetometerY = [STSensNetGenericRemoteFeature getMagY:sample];
         data.magnetometerZ = [STSensNetGenericRemoteFeature getMagZ:sample];
     }
     
-    
-    
-    //[self insertPlotItem:true];
+
+    [self insertPlotItem:true];
 
 }
 
