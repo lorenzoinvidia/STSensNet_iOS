@@ -215,7 +215,7 @@ SCNNode *mObjectNode;
 - (IBAction)resetPositionAction:(UIButton *)sender {
     BlueSTSDKFeatureSample * data = mRemoteFeature.lastSample;
     mQuatReset.z = -[STSensNetGenericRemoteFeature getQi:data];
-    mQuatReset.y = -[STSensNetGenericRemoteFeature getQj:data];
+    mQuatReset.y = [STSensNetGenericRemoteFeature getQj:data];
     mQuatReset.x = [STSensNetGenericRemoteFeature getQk:data];
     mQuatReset.w = sqrt(1-((mQuatReset.x*mQuatReset.x)+(mQuatReset.y*mQuatReset.y)+(mQuatReset.z*mQuatReset.z)));
     mQuatReset = GLKQuaternionInvert(mQuatReset);

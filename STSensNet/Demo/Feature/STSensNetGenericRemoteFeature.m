@@ -586,7 +586,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 /*---------------------------------------------------------------------------------*/
 
 +(float)getAccX:(BlueSTSDKFeatureSample *)sample{
-    NSLog(@"getAccX");
+    NSLog(@"----------------> getAccX");//DEBUG
     if (sample.data.count<ACCELERATION_X_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:ACCELERATION_X_INDEX] floatValue];

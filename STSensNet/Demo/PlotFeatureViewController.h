@@ -50,6 +50,7 @@
 
 @property (weak, nonatomic) IBOutlet CPTGraphHostingView *plotView;
 
+
 /*
  *  The active central node
  */
