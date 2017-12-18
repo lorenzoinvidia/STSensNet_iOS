@@ -57,7 +57,7 @@
 #define CANCEL_NAME @"Cancel"
 #define START_SCANNING_NAME @"Start Scanning"
 #define STOP_SCANNING_NAME @"Stop Scanning"
-#define SCANNING_START_NAME @"Scanner Starterd"
+#define SCANNING_START_NAME @"Scanner Started"
 #define SCANNING_STOP_NAME @"Scanner Stopped"
 
 #define ACC_SEGUE @"accelerometerSegue"
@@ -185,6 +185,9 @@
  * Set the unit string neede for the generic node row
  */
 -(void)setUpGenericCell{
+    NSLog(@"GRNVC setUpGenericCell");//DEBUG
+    
+    
     [GenericRemoteNodeCell setProximityUnit:
      [STSensNetGenericRemoteFeature getProximityUnit]];
     [GenericRemoteNodeCell setProximityMaxValue:
@@ -202,6 +205,7 @@
  *  set the control view as table source data
  */
 - (void)viewDidLoad {
+    NSLog(@"GRNVC viewDidLoad");//DEBUG
     [super viewDidLoad];
     
     mRemoteNodes = [NSMutableArray array];
@@ -213,10 +217,18 @@
     [self setUpEnviromentalCell];
     [self setUpGenericCell];
     
-    mStartScanningAction = [UIAlertAction actionWithTitle:START_SCANNING_NAME
-                                                    style:UIAlertActionStyleDefault
-                                                  handler:^(UIAlertAction *action) {
-                                                      [self onStartScanningActionPressed]; }];
+    if (!mStartScanningAction) {
+        mStartScanningAction = [UIAlertAction actionWithTitle:START_SCANNING_NAME
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [self onStartScanningActionPressed]; }];
+
+    }
+    
+//    mStartScanningAction = [UIAlertAction actionWithTitle:@"START_SCANNING_NAME"
+//                                                    style:UIAlertActionStyleDefault
+//                                                  handler:^(UIAlertAction *action) {
+//                                                      [self onStartScanningActionPressed]; }];
     
     mStopScanningAction = [UIAlertAction actionWithTitle:STOP_SCANNING_NAME
                                                    style:UIAlertActionStyleDefault
@@ -228,6 +240,7 @@
  *  retrive and enable the feature needed for the demo
  */
 -(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"GRNVC viewDidAppear");//DEBUG
     [super viewDidAppear:animated];
     
     mRemoteFeature =(STSensNetGenericRemoteFeature*)
@@ -251,6 +264,7 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"GRNVC viewDidDisappear");//DEBUG
     [super viewDidDisappear:animated];
     
     if(mRemoteFeature!=nil){
@@ -406,6 +420,8 @@
         [self micLevelNotificationDidChangeForNodeId:mLastEnabledMic newState:false];
     }
 }
+
+
 
 /**
  *  function called when the user change the led status, this function will send 

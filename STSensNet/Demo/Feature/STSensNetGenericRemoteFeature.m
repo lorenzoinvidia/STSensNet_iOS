@@ -137,7 +137,7 @@
 #define GYROSCOPE_Y_DATA_NAME @"Yg"
 #define GYROSCOPE_Z_DATA_NAME @"Zg"
 #define GYROSCOPE_UNIT @"dps"
-#define GYROSCOPE_DATA_MAX ((float)(1<<15)/10.0f)
+#define GYROSCOPE_DATA_MAX ((float)(1<<15)/50.0f)
 #define GYROSCOPE_DATA_MIN (-GYROSCOPE_DATA_MAX)
 
 #define MAGNETOMETER_X_INDEX 15
@@ -586,7 +586,6 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 /*---------------------------------------------------------------------------------*/
 
 +(float)getAccX:(BlueSTSDKFeatureSample *)sample{
-    NSLog(@"----------------> getAccX");//DEBUG
     if (sample.data.count<ACCELERATION_X_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:ACCELERATION_X_INDEX] floatValue];
@@ -699,7 +698,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 
 -(void)sendEnableCommand:(uint8_t)commandId nodeId:(uint16_t)nodeId enable:(bool)enable{
     
-    NSLog(@"sendEnableCommand ");//DEBUG
+//    NSLog(@"sendEnableCommand ");//DEBUG
     NSMutableData *msg = [NSMutableData data];
     nodeId = CFSwapInt16HostToBig(nodeId);
     uint8_t newStatus = enable ? 0x1 : 0x0;
@@ -727,25 +726,25 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 // Added
 
 -(void)enableSensorFusionForNode:(uint16_t)nodeId enabled:(bool)state{
-    NSLog(@"enableSensorFusionForNode %u",nodeId);//DEBUG
+    NSLog(@"enableSensorFusionForNode: %@ withState: %s", [NSString stringWithFormat:@"0x%0.4X",nodeId], state ? "true" : "false");//DEBUG
     
     [self sendEnableCommand:TYPE_ID_SENSORFUSION nodeId:nodeId enable:state];
 }
 
 -(void)enableAccelerationForNode:(uint16_t)nodeId enabled:(bool)state{
-     NSLog(@"enableAccelerationForNode %u",nodeId);//DEBUG
+     NSLog(@"enableAccelerationForNode: %@ withState: %s", [NSString stringWithFormat:@"0x%0.4X",nodeId], state ? "true" : "false");//DEBUG
     
     [self sendEnableCommand:TYPE_ID_ACCELERATION nodeId:nodeId enable:state];
 }
 
 -(void)enableGyroscopeForNode:(uint16_t)nodeId enabled:(bool)state{
-    NSLog(@"enableGyroscopeForNode %u",nodeId);//DEBUG
+    NSLog(@"enableGyroscopeForNode: %@ withState: %s", [NSString stringWithFormat:@"0x%0.4X",nodeId], state ? "true" : "false");//DEBUG
     
     [self sendEnableCommand:TYPE_ID_GYROSCOPE nodeId:nodeId enable:state];
 }
 
 -(void)enableMagnetometerForNode:(uint16_t)nodeId enabled:(bool)state{
-    NSLog(@"enableMagnetometerForNode %u",nodeId);//DEBUG
+    NSLog(@"enableMagnetometerForNode: %@ withState: %s", [NSString stringWithFormat:@"0x%0.4X",nodeId], state ? "true" : "false");//DEBUG
     
     [self sendEnableCommand:TYPE_ID_MAGNETOMETER nodeId:nodeId enable:state];
 }

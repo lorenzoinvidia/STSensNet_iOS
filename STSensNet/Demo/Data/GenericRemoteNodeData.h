@@ -76,7 +76,14 @@
  * tell if the node has send some proximity value
  * @return true if the node has send some valid proximity values
  */
--(BOOL) hasProximity;
+-(BOOL)hasProximity;
+
+
+/**
+ * tell if the node has the sensor fusion feature
+ * @return true if the node has the sensor fusion feature
+ */
+-(BOOL)hasSensorFusion;
 
 
 /**

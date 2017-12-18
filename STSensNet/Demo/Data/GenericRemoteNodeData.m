@@ -74,6 +74,22 @@
 }
 
 
+-(BOOL) hasSensorFusion {
+    bool state;
+    
+//    if (node.type = BlueSTSDKNodeTypeNucleo || node.type = BlueSTSDKNodeTypeSTEVAL_WESU1 ||
+//        BlueSTSDKNodeTypeSensor_Tile || node.type = BlueSTSDKNodeTypeGeneric) {
+//
+//        state = true;
+//    } else {
+//        state = false;
+//    }
+    
+    state = true;
+    return state;
+}
+
+
 -(void)setProximity:(int32_t)proximity{
     if(proximity<0)
         return;

@@ -63,11 +63,17 @@ static NSString *sMicLevelUnit;
     __weak IBOutlet UIProgressView *mMicLevelProgres;
     __weak IBOutlet UISwitch *mMicLevelSwitch;
     
-    /*
-     *  Mems and cube view
-     */
-    __weak IBOutlet UIView *mMemsView;
   
+    __weak IBOutlet UIView *mMemsView;
+    
+  
+    __weak IBOutlet UIImageView *cubeImage;
+    __weak IBOutlet UIView *cubeButtonView;
+    
+    
+    
+    
+    
 }
 
 /*
@@ -168,6 +174,8 @@ static NSString *sMicLevelUnit;
 }
 
 -(BOOL)updateContent:(GenericRemoteNodeData*)data{
+    NSLog(@"GRNC updateContent");//DEBUG
+    
     BOOL nodeChanges =[super updateContent:data];
     if(nodeChanges)
         mLastMotionEvent=-1;
@@ -179,6 +187,13 @@ static NSString *sMicLevelUnit;
     
     [self updateMicLevelValue:data.micLevel];
     [mMicLevelSwitch setOn:data.isMicLevelEnabled];
+    
+    if ([data hasSensorFusion]) {
+        [self sensorFusionViewIsActive:true];
+    } else {
+        [self sensorFusionViewIsActive:false];
+    }
+    
     
     [self showMemsView];
     
@@ -210,6 +225,21 @@ static NSString *sMicLevelUnit;
 +(void)setMicLevelUnit:(NSString*)unit{
     sMicLevelUnit = unit;
 }
+
+
+
+- (void)sensorFusionViewIsActive:(bool)state {
+    NSLog(@"updateCubeView with state: %s", state ? "true" : "false");//DEBUG
+    
+    if (!state) { // feature is missing
+        cubeImage.image = [UIImage imageNamed:@"sensorFusionIconDisable"];
+        cubeButtonView.hidden = true;
+    } else { // feature isn't missing
+        cubeImage.image = [UIImage imageNamed:@"sensorFusionIcon"];
+        cubeButtonView.hidden = false;
+    }
+}
+
 
 
 
