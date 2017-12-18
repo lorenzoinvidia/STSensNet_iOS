@@ -229,7 +229,7 @@ static NSString *sMicLevelUnit;
 
 
 - (void)sensorFusionViewIsActive:(bool)state {
-    NSLog(@"updateCubeView with state: %s", state ? "true" : "false");//DEBUG
+//    NSLog(@"updateCubeView with state: %s", state ? "true" : "false");//DEBUG
     
     if (!state) { // feature is missing
         cubeImage.image = [UIImage imageNamed:@"sensorFusionIconDisable"];

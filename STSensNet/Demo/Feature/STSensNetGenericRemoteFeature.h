@@ -256,7 +256,7 @@
  *
  *  @return magetometer value of the x axis
  */
-+(float)getMagX:(BlueSTSDKFeatureSample*)sample;
++(int)getMagX:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  extract the magnetometer value of the y axis
@@ -265,7 +265,7 @@
  *
  *  @return magetometer value of the y axis
  */
-+(float)getMagY:(BlueSTSDKFeatureSample*)sample;
++(int)getMagY:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  extract the magnetometer value of the z axis
@@ -274,7 +274,7 @@
  *
  *  @return magetometer value of the z axis
  */
-+(float)getMagZ:(BlueSTSDKFeatureSample*)sample;
++(int)getMagZ:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  gyroscope data in the x Axis
@@ -309,7 +309,7 @@
  *  @param sample data read from the node
  *  @return acceleration in the x axis
  */
-+(float)getAccX:(BlueSTSDKFeatureSample*)sample;
++(int)getAccX:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  return the y component of the acceleration
@@ -318,7 +318,7 @@
  *
  *  @return acceleration in the y axis
  */
-+(float)getAccY:(BlueSTSDKFeatureSample*)sample;
++(int)getAccY:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  return the z component of the acceleration
@@ -327,7 +327,7 @@
  *
  *  @return acceleration in the z axis
  */
-+(float)getAccZ:(BlueSTSDKFeatureSample*)sample;
++(int)getAccZ:(BlueSTSDKFeatureSample*)sample;
 
 /**
  *  extract the x quaternion component
@@ -363,7 +363,7 @@
  *
  *  @return status value
  */
-+(float)getStatus:(BlueSTSDKFeatureSample *)sample;
++(int)getStatus:(BlueSTSDKFeatureSample *)sample;
 
 
 +(NSString*)getAccelerationUnit;

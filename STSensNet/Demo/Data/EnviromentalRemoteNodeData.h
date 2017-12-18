@@ -52,6 +52,7 @@
 @property (readwrite,nonatomic, assign) float pressure;
 @property (readwrite,nonatomic, assign) int8_t ledStatus;
 @property (readwrite,nonatomic, assign) int luminosity;
+@property (readwrite, nonatomic, assign) int status;
 
 /**
  * true if the node has a valid luminosity values
