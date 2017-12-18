@@ -52,6 +52,7 @@
     _humidity=NAN;
     _ledStatus=-1;
     _luminosity=-1;
+    _status=-1;
     return self;
 }
 
@@ -83,6 +84,13 @@
     if(ledStatus<0)
         return;
     _ledStatus = ledStatus;
+}
+
+-(void)setStatus:(int)status{
+    if (status<0) {
+        return;
+    }
+    _status = status;
 }
 
 -(bool)hasLuminosity{

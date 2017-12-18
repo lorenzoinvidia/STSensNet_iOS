@@ -82,6 +82,8 @@ static NSString *sLuminosityUnit;
     @property (weak, nonatomic) IBOutlet UISwitch *ledStatusSwitch;
     @property (weak, nonatomic) IBOutlet UIImageView *ledImage;
     @property (weak, nonatomic) IBOutlet UILabel *ledLabel;
+    @property (weak, nonatomic) IBOutlet UILabel *disconnectedLabel;
+
 
 @end
 
@@ -147,7 +149,7 @@ static NSString *sLuminosityUnit;
         [_envDelegate ledStatusDidChangeForNodeId:_nodeId newState:sender.isOn];
 }
 
--(void) setLuminosity:(uint16_t)luminosity{
+-(void)setLuminosity:(uint16_t)luminosity{
     _ledLabel.hidden=false;
     _ledStatusSwitch.hidden=true;
     _ledLabel.text=[NSString stringWithFormat:@"%d %@",
@@ -155,8 +157,27 @@ static NSString *sLuminosityUnit;
     _ledImage.image = [UIImage imageNamed:@"led_on_icon"];
 }
 
+-(void)setStatusCellColor:(EnviromentalRemoteNodeData*)data {
+    
+    if (data.status == 1) { //remote node is disconnected
+//        NSLog(@"staus: %d --> light gray color", data.status);//DEBUG
+        [self setBackgroundColor:[UIColor lightGrayColor]];
+        self.disconnectedLabel.hidden = false;
+    }
+    if (data.status == 0) { //remote node has connected yet
+//        NSLog(@"staus: %d --> white color", data.status);//DEBUG
+        [self setBackgroundColor:[UIColor whiteColor]];
+        self.disconnectedLabel.hidden = true;
+    }
+}
+
 -(BOOL)updateContent:(EnviromentalRemoteNodeData*)data{
+//    NSLog(@"ERNC updateContent");//DEBUG
+    
     BOOL nodeChanges=false;
+    
+     [self setStatusCellColor:data];
+    
     if(_nodeId!=data.nodeId){
         mNextLedStatus=LED_NEXT_STATE_UNKNOWN;
         nodeChanges=true;
@@ -169,6 +190,7 @@ static NSString *sLuminosityUnit;
                            sPressUnit];
     _humidityLabel.text = [NSString stringWithFormat:@"%.2f %@",data.humidity,
                            sHumidityUnit];
+    
     if([data hasLuminosity])
         [self setLuminosity:data.luminosity];
     else if([data hasLedStatus])

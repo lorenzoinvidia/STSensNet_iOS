@@ -391,6 +391,7 @@
     
     //update the remote data struct
     GenericRemoteNodeData *data = [self getNodeData:nodeId];
+    data.status = [STSensNetGenericRemoteFeature getStatus:sample];
     data.temperature = [STSensNetGenericRemoteFeature getTemperature:sample];
     data.pressure = [STSensNetGenericRemoteFeature getPressure:sample];
     data.humidity = [STSensNetGenericRemoteFeature getHumidity:sample];

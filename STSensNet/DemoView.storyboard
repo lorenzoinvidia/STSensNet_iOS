@@ -298,6 +298,12 @@
                                                         <constraint firstAttribute="bottom" secondItem="g00-h1-W88" secondAttribute="bottom" id="wOz-6x-Gme"/>
                                                     </constraints>
                                                 </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCONNECTED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPH-wk-tmM">
+                                                    <rect key="frame" x="180" y="21" width="120" height="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="w6m-Qj-WIU" firstAttribute="leading" secondItem="0d6-at-iD7" secondAttribute="trailing" constant="8" id="2NM-iv-8oi"/>
@@ -313,10 +319,12 @@
                                                 <constraint firstItem="rQL-bW-UhL" firstAttribute="top" secondItem="QXO-hR-XYk" secondAttribute="bottom" constant="13" id="UEw-EM-7eE"/>
                                                 <constraint firstItem="wTo-jW-4Om" firstAttribute="leading" secondItem="pcv-Ba-5r2" secondAttribute="leadingMargin" constant="16" id="ULG-M1-cDQ"/>
                                                 <constraint firstItem="1pU-7k-ZUa" firstAttribute="leading" secondItem="QXO-hR-XYk" secondAttribute="trailing" constant="13" id="Wu2-ta-73S"/>
+                                                <constraint firstItem="jPH-wk-tmM" firstAttribute="leading" secondItem="wna-ug-3Sr" secondAttribute="trailing" constant="20" id="XPJ-CY-CR6"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="rQL-bW-UhL" secondAttribute="bottom" id="Yrb-4G-IGD"/>
                                                 <constraint firstItem="wna-ug-3Sr" firstAttribute="leading" secondItem="2Iu-eR-hSC" secondAttribute="trailing" constant="8" id="Yrf-FJ-mKT"/>
                                                 <constraint firstItem="w6m-Qj-WIU" firstAttribute="centerX" secondItem="pcv-Ba-5r2" secondAttribute="centerX" constant="25" id="e7i-mT-MAk"/>
                                                 <constraint firstItem="wTo-jW-4Om" firstAttribute="top" secondItem="2Iu-eR-hSC" secondAttribute="bottom" constant="8" id="gKc-NQ-lX5"/>
+                                                <constraint firstItem="jPH-wk-tmM" firstAttribute="centerY" secondItem="2Iu-eR-hSC" secondAttribute="centerY" id="gLX-sQ-GwY"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="rQL-bW-UhL" secondAttribute="trailing" id="gs4-A8-Pso"/>
                                                 <constraint firstItem="xb2-ju-RgY" firstAttribute="centerY" secondItem="w6m-Qj-WIU" secondAttribute="centerY" constant="2.5" id="ihP-af-Ukk"/>
                                                 <constraint firstItem="vjp-Ft-E6S" firstAttribute="centerY" secondItem="NXf-eC-dfH" secondAttribute="centerY" id="lfH-06-GqJ"/>
@@ -333,6 +341,7 @@
                                         <connections>
                                             <outlet property="cubeButtonView" destination="tUk-v5-FeT" id="u0g-SF-Oe0"/>
                                             <outlet property="cubeImage" destination="i7V-Cg-qyU" id="oZs-1E-f5A"/>
+                                            <outlet property="disconnectedLabel" destination="jPH-wk-tmM" id="57W-Ps-cR0"/>
                                             <outlet property="humidityLabel" destination="1pU-7k-ZUa" id="YhU-nR-pdC"/>
                                             <outlet property="ledImage" destination="NXf-eC-dfH" id="iCC-YR-Ged"/>
                                             <outlet property="ledLabel" destination="1Ju-Rl-ZCW" id="dfd-hg-O6n"/>

@@ -394,10 +394,12 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 readData+=2;
                 break;
             case TYPE_ID_HUMIDITY:
+                NSLog(@"TYPE_ID_HUMIDITY");//DEBUG
                 humidity = [rawData extractLeInt16FromOffset:readData+1]/10.0f;
                 readData+=2;
                 break;
             case TYPE_ID_LED_STATUS:
+                 NSLog(@"TYPE_ID_LED_STATUS");//DEBUG
                 ledStatus= [rawData extractInt8FromOffset:readData+1];
                 readData++;
                 break;
@@ -450,7 +452,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
             case TYPE_ID_STATUS:
                 NSLog(@"TYPE_ID_STATUS");//DEBUG
                 status=1;
-                readData+=1;
+//                readData++;
                 break;
                 
             case TYPE_ID_SENSORFUSION:
@@ -585,21 +587,21 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 
 /*---------------------------------------------------------------------------------*/
 
-+(float)getAccX:(BlueSTSDKFeatureSample *)sample{
++(int)getAccX:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<ACCELERATION_X_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:ACCELERATION_X_INDEX] floatValue];
 }
 
 
-+(float)getAccY:(BlueSTSDKFeatureSample *)sample{
++(int)getAccY:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<ACCELERATION_Y_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:ACCELERATION_Y_INDEX] floatValue];
 }
 
 
-+(float)getAccZ:(BlueSTSDKFeatureSample *)sample{
++(int)getAccZ:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<ACCELERATION_Z_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:ACCELERATION_Z_INDEX] floatValue];
@@ -611,19 +613,19 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 
 /*---------------------------------------------------------------------------------*/
 
-+(float)getMagX:(BlueSTSDKFeatureSample *)sample{
++(int)getMagX:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<MAGNETOMETER_X_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:MAGNETOMETER_X_INDEX] floatValue];
 }
 
-+(float)getMagY:(BlueSTSDKFeatureSample *)sample{
++(int)getMagY:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<MAGNETOMETER_Y_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:MAGNETOMETER_Y_INDEX] floatValue];
 }
 
-+(float)getMagZ:(BlueSTSDKFeatureSample *)sample{
++(int)getMagZ:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<MAGNETOMETER_Z_INDEX)
         return NAN;
     return [[sample.data objectAtIndex:MAGNETOMETER_Z_INDEX] floatValue];
@@ -659,7 +661,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 
 /*---------------------------------------------------------------------------------*/
 
-+(float)getStatus:(BlueSTSDKFeatureSample *)sample{
++(int)getStatus:(BlueSTSDKFeatureSample *)sample{
     if (sample.data.count<STATUS_INDEX) {
         return -1;
     }
