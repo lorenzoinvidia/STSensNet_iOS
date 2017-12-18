@@ -143,11 +143,11 @@ static NSNumber *sZero;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.plotView) {
-        NSLog(@"plotView is OK !");
-    }else {
-        NSLog(@"plotView is nil !");
-    }//DEBUG
+//    if (self.plotView) {
+//        NSLog(@"plotView is OK !");
+//    }else {
+//        NSLog(@"plotView is nil !");
+//    }//DEBUG
     
     
     //initialize
@@ -164,7 +164,7 @@ static NSNumber *sZero;
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"viewWillAppear");//DEBUG
+//    NSLog(@"viewWillAppear");//DEBUG
     [super viewWillAppear:animated];
     
     //initialize the plot
@@ -173,14 +173,14 @@ static NSNumber *sZero;
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"viewDidAppear");//DEBUG
+//    NSLog(@"viewDidAppear");//DEBUG
     [super viewDidAppear:animated];
     
     mRemFeature =(STSensNetGenericRemoteFeature*)
     [self.activeNode getFeatureOfType:STSensNetGenericRemoteFeature.class];
     
     if(mRemFeature!=nil){
-        NSLog(@"mRemFeature!=nil");//DEBUG
+//        NSLog(@"mRemFeature!=nil");//DEBUG
         
         // startPlotFeature methods
         mTimestampRangeDecimal = @(-(int32_t) mTimestampRange);
@@ -194,17 +194,17 @@ static NSNumber *sZero;
         
         //select for feature
         if ([self.featureLabelText isEqualToString:ACC_LABEL]) {
-            NSLog(@"%@", ACC_LABEL);
+//            NSLog(@"%@", ACC_LABEL);
             [self accelerationNotificationDidChangeForNodeId:self.nodeId newState:true];
         }
  
         if ([self.featureLabelText isEqualToString:GYRO_LABEL]) {
-                NSLog(@"%@", GYRO_LABEL);
+//                NSLog(@"%@", GYRO_LABEL);
             [self gyroscopeNotificationDidChangeForNodeId:self.nodeId newState:true];
         }
         
         if ([self.featureLabelText isEqualToString:MAG_LABEL]) {
-            NSLog(@"%@", MAG_LABEL);
+//            NSLog(@"%@", MAG_LABEL);
             [self magnetometerNotificationDidChangeForNodeId:self.nodeId newState:true];
         }
         
@@ -214,7 +214,7 @@ static NSNumber *sZero;
 
 
 - (void)viewWillDisappear:(BOOL)animated{
-    NSLog(@"viewWillDisappear");//DEBUG
+//    NSLog(@"viewWillDisappear");//DEBUG
     [super viewWillDisappear:animated];
     
     if (mRemFeature != nil) {
@@ -242,7 +242,7 @@ static NSNumber *sZero;
  */
 -(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
     
-    NSLog(@"getNodeData");//DEBUG
+//    NSLog(@"getNodeData");//DEBUG
     
     @synchronized (mRemNodes) {
         for(unsigned long i=0;i<mRemNodes.count;i++){
@@ -286,9 +286,9 @@ static NSNumber *sZero;
     }
     
     if ([self.featureLabelText isEqualToString:GYRO_LABEL]) {
-        tempX = [self getNodeData:nodeId].gyroscopeX;
-        tempY = [self getNodeData:nodeId].gyroscopeY;
-        tempZ = [self getNodeData:nodeId].gyroscopeZ;
+        tempX = (float)[self getNodeData:nodeId].gyroscopeX;
+        tempY = (float)[self getNodeData:nodeId].gyroscopeY;
+        tempZ = (float)[self getNodeData:nodeId].gyroscopeZ;
     }
     if ([self.featureLabelText isEqualToString:MAG_LABEL]) {
         tempX = [self getNodeData:nodeId].magnetometerX;

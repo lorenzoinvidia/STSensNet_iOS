@@ -61,17 +61,17 @@ SCNNode *mObjectNode;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.activeNode) {
-        NSLog(@"activeNode is OK !");
-    }else {
-        NSLog(@"activeNode is nil !");
-    }//DEBUG
-    
-    if (self.nodeId) {
-        NSLog(@"nodeId is %@", [NSString stringWithFormat:@"0x%0.4X",self.nodeId]);
-    }else {
-        NSLog(@"nodeId is nil !");
-    }//DEBUG
+//    if (self.activeNode) {
+//        NSLog(@"activeNode is OK !");
+//    }else {
+//        NSLog(@"activeNode is nil !");
+//    }//DEBUG
+//    
+//    if (self.nodeId) {
+//        NSLog(@"nodeId is %@", [NSString stringWithFormat:@"0x%0.4X",self.nodeId]);
+//    }else {
+//        NSLog(@"nodeId is nil !");
+//    }//DEBUG
     
 
     mRemoteNodes = [NSMutableArray array];

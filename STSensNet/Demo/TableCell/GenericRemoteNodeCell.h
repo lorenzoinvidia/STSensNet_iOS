@@ -142,4 +142,12 @@
  *  @param data data to display in this cell
  */
 -(BOOL)updateContent:(GenericRemoteNodeData*)data;
+
+/**
+ * show or hidden the sensor fusion view
+ * @param state true or false
+ */
+-(void)sensorFusionViewIsActive:(bool)state;
+
+
 @end
