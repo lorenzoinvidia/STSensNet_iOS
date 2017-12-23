@@ -45,7 +45,11 @@
 @end
 
 
-@implementation SensorFusionViewController
+@implementation SensorFusionViewController{
+    
+    __weak IBOutlet UILabel *supportedLabel;
+    
+}
 
 /**
  *  array of remote node data
@@ -60,20 +64,9 @@ SCNNode *mObjectNode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    if (self.activeNode) {
-//        NSLog(@"activeNode is OK !");
-//    }else {
-//        NSLog(@"activeNode is nil !");
-//    }//DEBUG
-//    
-//    if (self.nodeId) {
-//        NSLog(@"nodeId is %@", [NSString stringWithFormat:@"0x%0.4X",self.nodeId]);
-//    }else {
-//        NSLog(@"nodeId is nil !");
-//    }//DEBUG
-    
 
+    supportedLabel.hidden=true;
+    
     mRemoteNodes = [NSMutableArray array];
     self.featureLabel.text = self.featureLabelText;
     [self sceneViewSetup];
@@ -84,6 +77,7 @@ SCNNode *mObjectNode;
 - (void) viewDidAppear:(BOOL)animated {
 //    NSLog(@"viewDidAppear");//DEBUG
     [super viewDidAppear:animated];
+
     
     mRemoteFeature =(STSensNetGenericRemoteFeature*)
     [self.activeNode getFeatureOfType:STSensNetGenericRemoteFeature.class];
@@ -94,6 +88,7 @@ SCNNode *mObjectNode;
         [mRemoteFeature addFeatureDelegate:self];
         [self.activeNode enableNotification:mRemoteFeature];
         [self sensorFusionNotificationDidChangeForNodeId:self.nodeId newState:true];
+        
         
     }
 }
@@ -111,7 +106,7 @@ SCNNode *mObjectNode;
 }
 
 
-- (void)sceneViewSetup{
+- (void)sceneViewSetup {
 //    NSLog(@"sceneViewSetup");//DEBUG
 
     mScene = [SCNScene sceneNamed:SCENE_MODEL_FILE];
@@ -133,8 +128,6 @@ SCNNode *mObjectNode;
  */
 -(GenericRemoteNodeData*) getNodeData:(uint16_t)nodeId{
     
-//    NSLog(@"getNodeData");//DEBUG
-    
     @synchronized (mRemoteNodes) {
         for(unsigned long i=0;i<mRemoteNodes.count;i++){
             GenericRemoteNodeData *data = [mRemoteNodes objectAtIndex:i];
@@ -148,8 +141,6 @@ SCNNode *mObjectNode;
         [GenericRemoteNodeData initWithNodeId:nodeId];
         
         [mRemoteNodes addObject:data];
-        
-//        NSLog(@"mRemoteNodes with %lu elements", (unsigned long)mRemoteNodes.count);//DEBUG
         return data;
     }
     
@@ -163,11 +154,9 @@ SCNNode *mObjectNode;
  *  @param feature feature tha has an update
  *  @param sample  new data sample
  */
-- (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample{
-//    NSLog(@"didUpdateFeature");
+- (void)didUpdateFeature:(BlueSTSDKFeature *)feature sample:(BlueSTSDKFeatureSample *)sample {
 
     uint16_t nodeId = [STSensNetGenericRemoteFeature getNodeId:sample];
-//    NSLog(@"didUF node id: %u", nodeId);
     
     //update the remote data struct
     GenericRemoteNodeData *data = [self getNodeData:nodeId];
@@ -175,6 +164,21 @@ SCNNode *mObjectNode;
     data.sFusionQI = [STSensNetGenericRemoteFeature getQi:sample];
     data.sFusionQJ = [STSensNetGenericRemoteFeature getQj:sample];
     data.sFusionQK = [STSensNetGenericRemoteFeature getQk:sample];
+    
+    
+    if (isnan(data.sFusionQI) && isnan(data.sFusionQJ) && isnan(data.sFusionQK)) {
+        //NSLog(@"Datas read is NAN ----> feature not supported");//DEBUG
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            supportedLabel.hidden=false;
+        });
+        
+
+        
+    }
+//    else {
+//        NSLog(@"Datas read is not NAN ----> feature supported!");//DEBUG
+//    }
     
         GLKQuaternion temp;
         temp.z = -data.sFusionQI;

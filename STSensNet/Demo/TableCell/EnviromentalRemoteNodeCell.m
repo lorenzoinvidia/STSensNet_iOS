@@ -163,11 +163,13 @@ static NSString *sLuminosityUnit;
 //        NSLog(@"staus: %d --> light gray color", data.status);//DEBUG
         [self setBackgroundColor:[UIColor lightGrayColor]];
         self.disconnectedLabel.hidden = false;
+        [self setUserInteractionEnabled:false];
     }
     if (data.status == 0) { //remote node has connected yet
 //        NSLog(@"staus: %d --> white color", data.status);//DEBUG
         [self setBackgroundColor:[UIColor whiteColor]];
         self.disconnectedLabel.hidden = true;
+        [self setUserInteractionEnabled:true];
     }
 }
 

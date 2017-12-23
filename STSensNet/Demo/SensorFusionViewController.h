@@ -48,8 +48,6 @@
 #import <GLKit/GLKit.h>
 
 
-
-
 @interface SensorFusionViewController : UIViewController
 
 /*
@@ -70,6 +68,7 @@
 
 
 - (IBAction)resetPositionAction:(UIButton *)sender;
+
 
 
 
