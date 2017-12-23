@@ -69,24 +69,8 @@
 }
 
 
--(BOOL) hasProximity{
+-(BOOL)hasProximity{
     return _proximity>=0;
-}
-
-
--(BOOL) hasSensorFusion {
-    bool state;
-    
-//    if (node.type = BlueSTSDKNodeTypeNucleo || node.type = BlueSTSDKNodeTypeSTEVAL_WESU1 ||
-//        BlueSTSDKNodeTypeSensor_Tile || node.type = BlueSTSDKNodeTypeGeneric) {
-//
-//        state = true;
-//    } else {
-//        state = false;
-//    }
-    
-    state = true;
-    return state;
 }
 
 

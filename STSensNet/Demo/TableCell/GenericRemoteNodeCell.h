@@ -37,6 +37,7 @@
 
 #import "EnviromentalRemoteNodeCell.h"
 #import "GenericRemoteNodeData.h"
+#import "SensorFusionViewController.h"
 
 
 /**
@@ -83,7 +84,7 @@
  * class that will manage the data from a remote node with the proximity, mic level
  * and last moviment event
  **/
-@interface GenericRemoteNodeCell : EnviromentalRemoteNodeCell
+@interface GenericRemoteNodeCell: EnviromentalRemoteNodeCell
 
 
 /**
@@ -98,7 +99,7 @@
 
 
 /**
- * just declared. This func shows the mems view in the cell
+ * This func shows the mems view in the cell
  */
 -(void)showMemsView;
 
@@ -143,11 +144,13 @@
  */
 -(BOOL)updateContent:(GenericRemoteNodeData*)data;
 
-/**
- * show or hidden the sensor fusion view
- * @param state true or false
+
+/*
+ * update the gui disabling the sensor fusion view
+ *  @param notSupported true if the remote node
+ *  doesn't have the sfusion feature
  */
--(void)sensorFusionViewIsActive:(bool)state;
+-(void)sensorFusionNotSupported:(BOOL)notSupported;
 
 
 @end

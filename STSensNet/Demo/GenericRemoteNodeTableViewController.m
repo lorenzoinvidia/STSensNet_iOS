@@ -185,8 +185,6 @@
  * Set the unit string neede for the generic node row
  */
 -(void)setUpGenericCell{
-    NSLog(@"GRNVC setUpGenericCell");//DEBUG
-    
     
     [GenericRemoteNodeCell setProximityUnit:
      [STSensNetGenericRemoteFeature getProximityUnit]];
@@ -205,7 +203,7 @@
  *  set the control view as table source data
  */
 - (void)viewDidLoad {
-    NSLog(@"GRNVC viewDidLoad");//DEBUG
+    //NSLog(@"GRNVC viewDidLoad");//DEBUG
     [super viewDidLoad];
     
     mRemoteNodes = [NSMutableArray array];
@@ -229,18 +227,28 @@
 //                                                    style:UIAlertActionStyleDefault
 //                                                  handler:^(UIAlertAction *action) {
 //                                                      [self onStartScanningActionPressed]; }];
-    
-    mStopScanningAction = [UIAlertAction actionWithTitle:STOP_SCANNING_NAME
-                                                   style:UIAlertActionStyleDefault
-                                                 handler:^(UIAlertAction *action) {
-                                                     [self onStopScanningActionPressed];}];
+    if (!mStopScanningAction) {
+        mStopScanningAction = [UIAlertAction actionWithTitle:STOP_SCANNING_NAME
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                         [self onStopScanningActionPressed];}];
+
+    }
+//    mStopScanningAction = [UIAlertAction actionWithTitle:STOP_SCANNING_NAME
+//                                                   style:UIAlertActionStyleDefault
+//                                                 handler:^(UIAlertAction *action) {
+//                                                     [self onStopScanningActionPressed];}];
+
+
+[_menuDelegate addMenuAction:mStartScanningAction];
+
 }
 
 /**
  *  retrive and enable the feature needed for the demo
  */
 -(void)viewDidAppear:(BOOL)animated{
-    NSLog(@"GRNVC viewDidAppear");//DEBUG
+    //NSLog(@"GRNVC viewDidAppear");//DEBUG
     [super viewDidAppear:animated];
     
     mRemoteFeature =(STSensNetGenericRemoteFeature*)
@@ -255,7 +263,7 @@
     if(mCommand!=nil){
         [mCommand setDelegate:self];
         [self.node enableNotification:mCommand];
-        [_menuDelegate addMenuAction:mStartScanningAction];
+//        [_menuDelegate addMenuAction:mStartScanningAction];
     }
     
     mLastEnabledProx=-1;
@@ -264,7 +272,7 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    NSLog(@"GRNVC viewDidDisappear");//DEBUG
+    //NSLog(@"GRNVC viewDidDisappear");//DEBUG
     [super viewDidDisappear:animated];
     
     if(mRemoteFeature!=nil){
@@ -328,7 +336,7 @@
 #pragma mark - GenericRemoteNodeCellId
 
 -(void)notifyRemoteCellId:(uint16_t)nodeId{
-    NSLog(@"node id: %@",[NSString stringWithFormat:@"0x%0.4X",nodeId]);
+    NSLog(@"node id: %@",[NSString stringWithFormat:@"0x%0.4X",nodeId]);//DEBUG
     selectedRemoteNodeId = nodeId;
 }
 
@@ -363,6 +371,7 @@
     
     cell.envDelegate=self;
     cell.genericDelegate=self;
+    
     [cell updateContent:data];
     cell.idDelegate = self;
     return cell;
@@ -391,6 +400,10 @@
     
     //update the remote data struct
     GenericRemoteNodeData *data = [self getNodeData:nodeId];
+    
+//    data.sFusionQI = [STSensNetGenericRemoteFeature getQi:sample];
+//    data.sFusionQJ = [STSensNetGenericRemoteFeature getQj:sample];
+//    data.sFusionQK = [STSensNetGenericRemoteFeature getQk:sample];
     data.status = [STSensNetGenericRemoteFeature getStatus:sample];
     data.temperature = [STSensNetGenericRemoteFeature getTemperature:sample];
     data.pressure = [STSensNetGenericRemoteFeature getPressure:sample];
@@ -478,8 +491,6 @@
 }
 
 
-
-
 /**
  * Function called when the user want enable the node scanning
  */
@@ -517,8 +528,6 @@
             [self showMessage:SCANNING_START_NAME];
         });
     mUserChangeScanningState=false;
-    
-    
 }
 
 -(void)onScanIsStopped:(STSensNetCommandFeature*)commandFeature{

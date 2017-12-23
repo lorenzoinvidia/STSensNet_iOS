@@ -394,12 +394,12 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 readData+=2;
                 break;
             case TYPE_ID_HUMIDITY:
-                NSLog(@"TYPE_ID_HUMIDITY");//DEBUG
+//                NSLog(@"TYPE_ID_HUMIDITY");//DEBUG
                 humidity = [rawData extractLeInt16FromOffset:readData+1]/10.0f;
                 readData+=2;
                 break;
             case TYPE_ID_LED_STATUS:
-                 NSLog(@"TYPE_ID_LED_STATUS");//DEBUG
+//                 NSLog(@"TYPE_ID_LED_STATUS");//DEBUG
                 ledStatus= [rawData extractInt8FromOffset:readData+1];
                 readData++;
                 break;
@@ -420,7 +420,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_ACCELERATION:
-                NSLog(@"TYPE_ID_ACCELERATION");//DEBUG
+//                NSLog(@"TYPE_ID_ACCELERATION");//DEBUG
                 accelerationX = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
                 accelerationY = [rawData extractLeInt16FromOffset:readData+1];
@@ -430,7 +430,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_GYROSCOPE:
-                NSLog(@"TYPE_ID_GYROSCOPE");//DEBUG
+//                NSLog(@"TYPE_ID_GYROSCOPE");//DEBUG
                 gyroscopeX = [rawData extractLeInt16FromOffset:(readData+1)]/10.0f;
                 readData+=2;
                 gyroscopeY = [rawData extractLeInt16FromOffset:(readData+1)]/10.0f;
@@ -440,7 +440,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_MAGNETOMETER:
-                NSLog(@"TYPE_ID_MAGNETOMETER");//DEBUG
+//                NSLog(@"TYPE_ID_MAGNETOMETER");//DEBUG
                 magnetometerX = [rawData extractLeInt16FromOffset:readData+1];
                 readData+=2;
                 magnetometerY = [rawData extractLeInt16FromOffset:readData+1];
@@ -450,13 +450,13 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 break;
                 
             case TYPE_ID_STATUS:
-                NSLog(@"TYPE_ID_STATUS");//DEBUG
+//                NSLog(@"TYPE_ID_STATUS");//DEBUG
                 status=1;
-//                readData++;
+
                 break;
                 
             case TYPE_ID_SENSORFUSION:
-                NSLog(@"TYPE_ID_SENSORFUSION");//DEBUG
+//                NSLog(@"TYPE_ID_SENSORFUSION");//DEBUG
                 sFusionQI = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
                 readData+=2;
                 sFusionQJ = [rawData extractLeInt16FromOffset:(readData+1)]/10000.0f;
@@ -717,6 +717,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
 }
 
 -(void)enableProximityForNode:(uint16_t)nodeId enabled:(bool)state{
+    NSLog(@"enableProximityForNode: %@ withState: %s", [NSString stringWithFormat:@"0x%0.4X",nodeId], state ? "true" : "false");//DEBUG
     [self sendEnableCommand:TYPE_ID_PROXIMITY nodeId:nodeId enable:state];
 }
 

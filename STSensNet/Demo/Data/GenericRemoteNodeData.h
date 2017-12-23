@@ -80,13 +80,6 @@
 
 
 /**
- * tell if the node has the sensor fusion feature
- * @return true if the node has the sensor fusion feature
- */
--(BOOL)hasSensorFusion;
-
-
-/**
  * acceleration
  */
 @property (readwrite,nonatomic, assign) int accelerationX;
@@ -137,10 +130,6 @@
  */
 @property (readwrite, assign) BOOL isSensorFusionEnabled;
 
-
-/**
- * status
- */
 
 
 @end
