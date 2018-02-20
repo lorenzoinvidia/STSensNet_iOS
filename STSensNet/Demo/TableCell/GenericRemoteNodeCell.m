@@ -146,7 +146,7 @@ static NSString *sMicLevelUnit;
     if(priximitIsMissing)
         return;
 
-    if(proximity!=sOutOfRangeValue){
+    if((proximity!=sOutOfRangeValue) && (proximity < sProximityMaxValue)){
         mProximityProgres.progress = proximity/(float)sProximityMaxValue;
         mProximityProgres.hidden=false;
         mProximityLabel.text = [NSString stringWithFormat:@"%4d (%@)",proximity,sProximityUnit];
@@ -163,9 +163,15 @@ static NSString *sMicLevelUnit;
     mMicLevelProgres.hidden=micIsMissing;
     if(micIsMissing)
         return;
-    mMicLevelProgres.hidden=false;
-    mMicLevelProgres.progress = micLevel/(float)sMicLevelMaxValue;
-    mMicLevelLabel.text = [NSString stringWithFormat:@"%4d (%@)",micLevel,sMicLevelUnit];
+    
+    if (micLevel < sMicLevelMaxValue){
+        mMicLevelProgres.hidden=false;
+        mMicLevelProgres.progress = micLevel/(float)sMicLevelMaxValue;
+        mMicLevelLabel.text = [NSString stringWithFormat:@"%4d (%@)",micLevel,sMicLevelUnit];
+    }else{
+        mMicLevelProgres.hidden = true;
+        mMicLevelLabel.text = OUT_OF_BAND;
+    }
 }
 
 
