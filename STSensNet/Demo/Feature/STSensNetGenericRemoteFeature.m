@@ -377,7 +377,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
     
     
     uint32_t readData = offset;
-    
+    //NSLog(@" int nodeID = [rawData extractLeUInt16FromOffset:readData];");//DEBUG
     int nodeID = [rawData extractLeUInt16FromOffset:readData];
     
     readData+=2;
@@ -404,6 +404,7 @@ static NSArray<BlueSTSDKFeatureField*> *sFieldDesc;
                 readData++;
                 break;
             case TYPE_ID_PROXIMITY:
+//                NSLog(@"TYPE_ID_PROXIMITY");//DEBUG
                 proximity = [rawData extractLeUInt16FromOffset:readData+1];
                 readData+=2;
                 break;
